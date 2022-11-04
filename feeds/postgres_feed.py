@@ -107,6 +107,11 @@ class PostgresFeed(AbstractFeed):
         WHERE type = 'physical'
         '''
 
+    training_qry = '''
+        SELECT *     
+        FROM organizations_mangled
+    '''
+
     def __init__(self, connector: object, query: str, column_definition: list=None, primary_key: str=None, lib_definition: list=None):
         self.__connector = connector
         self.__query = query

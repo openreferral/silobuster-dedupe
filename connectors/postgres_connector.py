@@ -21,6 +21,7 @@ class PostgresConnector(AbstractConnector):
         self.__username = username
         self.__password = password
         self.__host = host
+        self.__port = port
 
         self.__conn = psycopg2.connect(
             database=db,
