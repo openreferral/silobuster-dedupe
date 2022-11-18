@@ -86,7 +86,7 @@ from libs.connectors.postgres_connector import PostgresConnector
 class PostgresFeed(AbstractFeed):
     
     main_key = 'organization_id'
-
+    report_key = 'job_id'
     main_qry = '''
         SELECT
             o.id as organization_id,
@@ -107,6 +107,27 @@ class PostgresFeed(AbstractFeed):
         WHERE type = 'physical'
         '''
     write_log_qry = 'INSERT INTO logs (id, job_id, iteration_id, step_name, contributor_name, log_message) VALUES (%s, %s, %s, %s, %s, %s)'
+
+    report_qry = '''
+        SELECT 
+            log_message->>'id', 
+            log_message->>'organization_id', 
+            log_message->>'organization_name', 
+            log_message->>'organization_url', 
+            log_message->>'location_name', 
+            log_message->>'required_text', 
+            log_message->>'latitude', 
+            log_message->>'longitude', 
+            log_message->>'address_1', 
+            log_message->>'city', 
+            log_message->>'state_province', 
+            log_message->>'postal_code', 
+            log_message->>'cluster_id', 
+            log_message->>'confidence' 
+        FROM logs 
+        ORDER BY log_message->>'cluster_id'
+    
+        '''
 
     def __init__(self, connector: object, query: str, column_definition: list=None, primary_key: str=None, lib_definition: list=None):
         self.__connector = connector
@@ -151,6 +172,16 @@ class PostgresFeed(AbstractFeed):
 
         return cls(connector=my_conn, query=my_qry, column_definition=None, primary_key=my_key)
 
+    @classmethod
+    def from_report(cls, query: str=None, primary_key: str=None):
+        my_conn = PostgresConnector(db='defaultdb', username='doadmin', password='AVNS_2Lh_hY8r7RVKSfLwbJM', host='silobuster-dev-db-do-user-12298230-0.b.db.ondigitalocean.com', port=25060)
+        my_qry = None
+        my_key = None    
+        
+        my_qry = cls.report_qry
+        my_key = cls.main_key
+
+        return cls(connector=my_conn, query=my_qry, column_definition=None, primary_key=my_key)
 
     @classmethod
     def from_write_log(cls, query: str=None):
@@ -309,4 +340,19 @@ class PostgresFeed(AbstractFeed):
         with self.__connector.connection.cursor() as cursor:
             cursor.execute(self.write_qry, args)
             self.__connector.connection.commit()
+
             
+    def execute_dict(self, qry):
+        with self.__connector.connection.cursor(cursor_factory = psycopg2.extras.RealDictCursor) as cursor:
+            cursor.execute(qry)
+            data = cursor.fetchall()
+            return data
+#            self.__connector.connection.commit()
+    
+            
+    def execute(self, qry):
+        with self.__connector.connection.cursor() as cursor:
+            cursor.execute(qry)
+            data = cursor.fetchall()
+            return data
+#            self.__connector.connection.commit()

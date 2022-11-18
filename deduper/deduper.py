@@ -16,7 +16,6 @@ The columns shape the data.
 
 You will most likely get errors if the data is not the same labels.
 
-Contact me for help: Jamey Harris jameycharris@yahoo.com
 '''
 
 import sys
@@ -98,6 +97,7 @@ with open('deduplication_results.csv') as csvfile:
 
         }
             
+        # id, job_id, iteration_id, step_name, contributor_name, log_message
         
         pg_write.write(str(uid), str(job_id), 1, "dedupe", "test", json.dumps(obj))
 
