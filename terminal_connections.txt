@@ -1,0 +1,6 @@
+Main connection:
+
+psql -U doadmin -p 25060 -h silobuster-dev-db-do-user-12298230-0.b.db.ondigitalocean.com defaultdb
+
+AVNS_2Lh_hY8r7RVKSfLwbJM
+

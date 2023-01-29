@@ -38,67 +38,68 @@ from libs.uuid import random_uuid
 pg_feed = PostgresFeed.from_main()
 pg_write = PostgresFeed.from_write_log()
 
-print ("Starting deduplication...")
-# The Levenshtein distance is used for fields identified as 'String'. However, it appears we 
-# can't use "has missing" with Strings. Where fields may be empty, use type of "Test" instead.
-df_final = pandas_dedupe.dedupe_dataframe(pg_feed.df, [
-    ('o_name', 'String'),
-    ('address_1', 'String'), 
-    ('address_2','Text', 'has missing'), 
-    ('city','Text','has missing'), 
-    ('state_province','Text','has missing'), 
-    ('postal_code','Text','has missing'), 
-    ('o_url','Text','has missing'), 
-    #('l_description','Text','has missing')
-])
+def dedupe_it():
+    print ("Starting deduplication...")
+    # The Levenshtein distance is used for fields identified as 'String'. However, it appears we 
+    # can't use "has missing" with Strings. Where fields may be empty, use type of "Test" instead.
+    df_final = pandas_dedupe.dedupe_dataframe(pg_feed.df, [
+        ('o_name', 'String'),
+        ('address_1', 'String'), 
+        ('address_2','Text', 'has missing'), 
+        ('city','Text','has missing'), 
+        ('state_province','Text','has missing'), 
+        ('postal_code','Text','has missing'), 
+        ('o_url','Text','has missing'), 
+        #('l_description','Text','has missing')
+    ])
 
-# Write the deduplicated data
-df_final.to_csv('deduplication_results.csv')
+    # Write the deduplicated data
+    df_final.to_csv('deduplication_results.csv')
 
-'''
-The overall concept is to read the deduplicated data line by line and write to the db.
-Along the way, enrich the data with specific attributes for the logs table, such as UUID ids.
+    '''
+    The overall concept is to read the deduplicated data line by line and write to the db.
+    Along the way, enrich the data with specific attributes for the logs table, such as UUID ids.
 
-CLUSTER IDS: The cluster id from the deduper library is replaced with a UUID so that they can be uniquely identified.
-'''
-print ("Writing to database...")
-with open('deduplication_results.csv') as csvfile:
-    reader = csv.reader(csvfile, delimiter=",")
-    next(reader) # skip header row
+    CLUSTER IDS: The cluster id from the deduper library is replaced with a UUID so that they can be uniquely identified.
+    '''
+    print ("Writing to database...")
+    with open('deduplication_results.csv') as csvfile:
+        reader = csv.reader(csvfile, delimiter=",")
+        next(reader) # skip header row
 
-    job_id = random_uuid()
-    cluster_hash = {}
+        job_id = random_uuid()
+        cluster_hash = {}
 
-    for row in reader:
-        row_num, organization_id, o_name, o_url, location_id, l_name, latitude, longitude, address_1, address_2, city, state_province, postal_code, cluster_id, confidence = row
-#        print (row)   
-        if cluster_id not in cluster_hash:
-            cluster_hash[cluster_id] = random_uuid()
+        for row in reader:
+            row_num, organization_id, o_name, o_url, location_id, l_name, latitude, longitude, address_1, address_2, city, state_province, postal_code, cluster_id, confidence = row
+    #        print (row)   
+            if cluster_id not in cluster_hash:
+                cluster_hash[cluster_id] = random_uuid()
 
-        uid = random_uuid()
-        
-        # Build a hash object to json
-        obj = {
-                'id':                       str(uid),
-                'organization_id':          organization_id,
-                'organization_name':        o_name,
-                'organization_url':         o_url,
-                'location_id':              location_id,
-                'location_name':            l_name,
-                'latitude':                 latitude,
-                'longitude':                longitude,
-                'address_1':                address_1,
-                'address_2':                address_2,
-                'city':                     city,
-                'state_province':           state_province,
-                'postal_code':              postal_code,
-                'cluster_id':               str(cluster_hash[cluster_id]),
-                'confidence':               confidence,
-
-        }
+            uid = random_uuid()
             
-        # id, job_id, iteration_id, step_name, contributor_name, log_message
-        
-        pg_write.write(str(uid), str(job_id), 1, "dedupe", "test", json.dumps(obj))
+            # Build a hash object to json
+            obj = {
+                    'id':                       str(uid),
+                    'organization_id':          organization_id,
+                    'organization_name':        o_name,
+                    'organization_url':         o_url,
+                    'location_id':              location_id,
+                    'location_name':            l_name,
+                    'latitude':                 latitude,
+                    'longitude':                longitude,
+                    'address_1':                address_1,
+                    'address_2':                address_2,
+                    'city':                     city,
+                    'state_province':           state_province,
+                    'postal_code':              postal_code,
+                    'cluster_id':               str(cluster_hash[cluster_id]),
+                    'confidence':               confidence,
 
-print ("Finished job successfully!")
+            }
+                
+            # id, job_id, iteration_id, step_name, contributor_name, log_message
+            
+            pg_write.write(str(uid), str(job_id), 1, "dedupe", "test", json.dumps(obj))
+
+    print ("Finished job successfully!")

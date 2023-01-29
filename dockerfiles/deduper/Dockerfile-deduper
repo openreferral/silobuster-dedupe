@@ -41,6 +41,7 @@ RUN apt update && \
     apt-get update -y && \
     apt-get install sshpass -y && \
     apt install vim -y && \
+    apt-get install ipython3 -y && \
     mkdir /custom
 
 # RUN apt-get install -y librdkafka++1 && apt update && apt-get update

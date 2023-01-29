@@ -16,10 +16,13 @@ services:
     
     volumes:
       - ./../deduper:/var/www/deduper
-      - ./../libs:/var/www/libs
+      - ./../libs:/var/www/deduper/libs
     # networks:
     #   - ms-network
     
     env_file: ./.env
     command: entrypoint-deduper.sh
     # restart: always
+
+    ports:
+      - 8000:8000
