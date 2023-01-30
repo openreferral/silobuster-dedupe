@@ -6,7 +6,7 @@ from rest_framework import status
 
 
 # Create your views here.
-class HomeView(APIView):
+class Index(APIView):
 
     def post(self, request):
 

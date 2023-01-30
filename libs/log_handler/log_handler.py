@@ -3,10 +3,13 @@ import json
 
 from libs.handler.base_handler import BaseHandler, BaseDBHandler
 from libs.silobuster_exceptions.type_exceptions import HandlerError
+from libs.silobuster_exceptions.log_exceptions import LogTypeNotImplemented
 
 from libs.dataframes.to_types import to_list_of_dicts
 from libs.dataframes.encoders import NpEncoder
 from libs.uuid import random_uuid
+
+from libs.base_classes.singleton import SingletonMeta
 
 
 class LOG_DESTINATION:
@@ -14,7 +17,7 @@ class LOG_DESTINATION:
     JSON = 2
 
 
-class LogHandler:
+class LogHandler(metaclass=SingletonMeta):
 
     insert_query = ''
     def __init__(self, default_destination: LOG_DESTINATION='db', db_handler: BaseDBHandler=None):
@@ -45,8 +48,14 @@ class LogHandler:
 
 
     @property
-    def db_handler(self):
+    def db_handler(self) -> BaseDBHandler:
         return self.__db_handler
+
+
+    @db_handler.setter
+    def db_handler(self, value: BaseDBHandler):
+        if isinstance(value, BaseDBHandler):
+            self.__db_handler = value
 
 
     def create_log_message(self, original_data: pd.DataFrame, results: pd.DataFrame, *args, **kwargs):
@@ -109,8 +118,11 @@ class LogHandler:
     def log(self, original_data: pd.DataFrame, results: pd.DataFrame, *args, **kwargs) -> bool:
         
         values = self.create_log_message(original_data, results, *args, **kwargs)
-        if self.default_destination == LOG_DESTINATION.DB:
+
+        if self.default_destination == LOG_DESTINATION.DB or kwargs.get('destination') == 'db':
             return self._log_to_db(*values)
+        else:
+            raise LogTypeNotImplemented([kwargs.get('destination'), self.default_destination])
 
 
     

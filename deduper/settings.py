@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+from libs.log_handler.log_handler import LogHandler
+from libs.handler.postgres_handler import PostgresHandler
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'deduper',
+    'deduplicate',
+    'logs',
     'libs',
 ]
 
@@ -124,3 +129,19 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+'''
+DEDUPLICATION OPTIONS
+
+DEDUPLICATION STEPS: (function: path) the funciton to transform data
+app_logger: system-wide app logger. Each step produces a log result. If the connector is configured (by default is True) to log, then each step produces a log. See libs.log_handler.log_handler.LogHandler
+The app_logger is a singleton class.
+'''
+
+DEDUPLICATION_STEPS = {
+    'dedupe_names_orgs': 'libs.dedupe.ml.names_orgs.names_orgs'
+}
+
+app_logger = LogHandler(db_handler=PostgresHandler(env_prefix='POSTGRES'))

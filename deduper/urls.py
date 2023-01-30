@@ -15,10 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from views import HomeView
+
+from views import Index
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', HomeView.as_view(), name="home"), 
+    path('', Index.as_view()),
+    path(f'deduplicate/', include('deduplicate.urls')),
+    path(f'logs/', include('logs.urls')),
 ]
+#     path('admin/', admin.site.urls),
+#     path('', HomeView.as_view(), name="home"), 
+#     include('/deduplicate')
+# ]

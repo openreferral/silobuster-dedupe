@@ -28,6 +28,9 @@ class PostgresHandler(BaseDBHandler):
 
 
     def __init__(self, db: str=None, username: str=None, password: str=None, host: str=None, port: int=None, query: str=None, env_prefix: str="POSTGRES"):
+        # Set environment prefix to default if none
+        if env_prefix is None:
+            env_prefix = 'POSTGRES'
         self.__db = PostgresHandler.load_param(db, env_prefix + "_DB")
         self.__username = PostgresHandler.load_param(username, env_prefix + '_USERNAME')
         self.__password = PostgresHandler.load_param(password, env_prefix + '_PASSWORD')
@@ -58,7 +61,10 @@ class PostgresHandler(BaseDBHandler):
 
 
     def __del__(self):
-        self.__conn.close()
+        try:
+            self.__conn.close()
+        except Exception as e:
+            print (e)
 
     
     @property
@@ -90,7 +96,20 @@ class PostgresHandler(BaseDBHandler):
     @query.setter
     def query(self, value: str):
         if isinstance(value, str):
-            self.__query = value.strip().replace('\n', '')
+            formatted_query = value.strip().replace('\n', '')
+            lst_query = list(formatted_query)
+            
+            while True:    
+                break_flag = True
+                if lst_query[0] == "'" or lst_query[0] == '"':
+                    lst_query.pop(0)
+                    lst_query.pop()
+                    break_flag = False
+                
+                if break_flag:
+                    break
+            self.__query = ''.join(lst_query)
+            
         else:
             self.__query = ''
 

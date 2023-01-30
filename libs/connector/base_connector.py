@@ -47,6 +47,10 @@ class BaseConnector(ABC):
         pass
 
     @abstractmethod
+    def parse_steps(self):
+        pass
+
+    @abstractmethod
     def transform(self):
         pass
 
