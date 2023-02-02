@@ -1,3 +1,11 @@
+'''
+All handlers implement the abstract BaseHandler class. It defines that each handler implement an "execute" method.
+
+BaseDBHandler (Database handlers) must implement connection parameters.
+
+Handlers are responsible for connecting to a source of data to either retrieve data or to write data. Connectors then implement these handlers to manage the input/output of data.
+'''
+
 from abc import ABC, abstractmethod
 
 

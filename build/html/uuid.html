@@ -1,0 +1,463 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>uuid module &#8212; Silobuster Dedupe 1.0.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?2022.1" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Connectors" href="connectors.html" />
+    <link rel="prev" title="singleton module" href="singleton.html" /><link rel="shortcut icon" type="image/png" href="_static/py.svg" />
+            <script type="text/javascript" src="_static/copybutton.js"></script>
+            <script type="text/javascript" src="_static/menu.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <label for="menuToggler" class="toggler__label">
+        <span></span>
+    </label>
+    <nav class="nav-content" role="navigation">
+         <a href="https://www.python.org/" class="nav-logo">
+             <img src="_static/py.svg" alt="Logo"/>
+         </a>
+        <div class="version_switcher_placeholder"></div>
+        <form role="search" class="search" action="search.html" method="get">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                <path fill-rule="nonzero"
+                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
+            </svg>
+            <input type="text" name="q" aria-label="Quick search"/>
+            <input type="submit" value="Go"/>
+        </form>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="singleton.html"
+                        title="previous chapter">singleton module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="connectors.html"
+                        title="next chapter">Connectors</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/uuid.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </nav>
+    </div>
+</div>
+  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="connectors.html" title="Connectors"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="singleton.html" title="singleton module"
+             accesskey="P">previous</a> |</li>
+          <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="index.html">Silobuster Dedupe 1.0.0 documentation</a> &#187;
+              
+          </li>
+          <li class="nav-item nav-item-1"><a href="helpers.html" accesskey="U">Helper Libraries</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">uuid module</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+                     |
+                </li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-uuid">
+<span id="uuid-module"></span><h1>uuid module<a class="headerlink" href="#module-uuid" title="Permalink to this headline">¶</a></h1>
+<p>UUID objects (universally unique identifiers) according to RFC 4122.</p>
+<p>This module provides immutable UUID objects (class UUID) and the functions
+uuid1(), uuid3(), uuid4(), uuid5() for generating version 1, 3, 4, and 5
+UUIDs as specified in RFC 4122.</p>
+<p>If all you want is a unique ID, you should probably call uuid1() or uuid4().
+Note that uuid1() may compromise privacy since it creates a UUID containing
+the computer’s network address.  uuid4() creates a random UUID.</p>
+<p>Typical usage:</p>
+<blockquote>
+<div><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">uuid</span>
+</pre></div>
+</div>
+<p># make a UUID based on the host ID and current time
+&gt;&gt;&gt; uuid.uuid1()    # doctest: +SKIP
+UUID(‘a8098c1a-f86e-11da-bd1a-00112444be1e’)</p>
+<p># make a UUID using an MD5 hash of a namespace UUID and a name
+&gt;&gt;&gt; uuid.uuid3(uuid.NAMESPACE_DNS, ‘python.org’)
+UUID(‘6fa459ea-ee8a-3ca4-894e-db77e160355e’)</p>
+<p># make a random UUID
+&gt;&gt;&gt; uuid.uuid4()    # doctest: +SKIP
+UUID(‘16fd2706-8baf-433b-82eb-8c7fada847da’)</p>
+<p># make a UUID using a SHA-1 hash of a namespace UUID and a name
+&gt;&gt;&gt; uuid.uuid5(uuid.NAMESPACE_DNS, ‘python.org’)
+UUID(‘886313e1-3b8a-5372-9b90-0c9aee199e5d’)</p>
+<p># make a UUID from a string of hex digits (braces and hyphens ignored)
+&gt;&gt;&gt; x = uuid.UUID(‘{00010203-0405-0607-0809-0a0b0c0d0e0f}’)</p>
+<p># convert a UUID to a string of hex digits in standard form
+&gt;&gt;&gt; str(x)
+‘00010203-0405-0607-0809-0a0b0c0d0e0f’</p>
+<p># get the raw 16 bytes of the UUID
+&gt;&gt;&gt; x.bytes
+b’x00x01x02x03x04x05x06x07x08tnx0bx0crx0ex0f’</p>
+<p># make a UUID from a 16-byte string
+&gt;&gt;&gt; uuid.UUID(bytes=x.bytes)
+UUID(‘00010203-0405-0607-0809-0a0b0c0d0e0f’)</p>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="uuid.SafeUUID">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">uuid.</span></span><span class="sig-name descname"><span class="pre">SafeUUID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uuid.SafeUUID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="uuid.SafeUUID.safe">
+<span class="sig-name descname"><span class="pre">safe</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#uuid.SafeUUID.safe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="uuid.SafeUUID.unknown">
+<span class="sig-name descname"><span class="pre">unknown</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#uuid.SafeUUID.unknown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="uuid.SafeUUID.unsafe">
+<span class="sig-name descname"><span class="pre">unsafe</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#uuid.SafeUUID.unsafe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="uuid.UUID">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">uuid.</span></span><span class="sig-name descname"><span class="pre">UUID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bytes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bytes_le</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_safe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SafeUUID.unknown</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uuid.UUID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Instances of the UUID class represent UUIDs as specified in RFC 4122.
+UUID objects are immutable, hashable, and usable as dictionary keys.
+Converting a UUID to a string with str() yields something in the form
+‘12345678-1234-1234-1234-123456789abc’.  The UUID constructor accepts
+five possible forms: a similar string of hexadecimal digits, or a tuple
+of six integer fields (with 32-bit, 16-bit, 16-bit, 8-bit, 8-bit, and
+48-bit values respectively) as an argument named ‘fields’, or a string
+of 16 bytes (with all the integer fields in big-endian order) as an
+argument named ‘bytes’, or a string of 16 bytes (with the first three
+fields in little-endian order) as an argument named ‘bytes_le’, or a
+single 128-bit integer as an argument named ‘int’.</p>
+<p>UUIDs have these read-only attributes:</p>
+<blockquote>
+<div><dl>
+<dt>bytes       the UUID as a 16-byte string (containing the six</dt><dd><p>integer fields in big-endian byte order)</p>
+</dd>
+<dt>bytes_le    the UUID as a 16-byte string (with time_low, time_mid,</dt><dd><p>and time_hi_version in little-endian byte order)</p>
+</dd>
+<dt>fields      a tuple of the six integer fields of the UUID,</dt><dd><blockquote>
+<div><p>which are also available as six individual attributes
+and two derived attributes:</p>
+</div></blockquote>
+<p>time_low                the first 32 bits of the UUID
+time_mid                the next 16 bits of the UUID
+time_hi_version         the next 16 bits of the UUID
+clock_seq_hi_variant    the next 8 bits of the UUID
+clock_seq_low           the next 8 bits of the UUID
+node                    the last 48 bits of the UUID</p>
+<p>time                    the 60-bit timestamp
+clock_seq               the 14-bit sequence number</p>
+</dd>
+</dl>
+<p>hex         the UUID as a 32-character hexadecimal string</p>
+<p>int         the UUID as a 128-bit integer</p>
+<p>urn         the UUID as a URN as specified in RFC 4122</p>
+<dl class="simple">
+<dt>variant     the UUID variant (one of the constants RESERVED_NCS,</dt><dd><p>RFC_4122, RESERVED_MICROSOFT, or RESERVED_FUTURE)</p>
+</dd>
+<dt>version     the UUID version number (1 through 5, meaningful only</dt><dd><p>when the variant is RFC_4122)</p>
+</dd>
+<dt>is_safe     An enum indicating whether the UUID has been generated in</dt><dd><p>a way that is safe for multiprocessing applications, via
+uuid_generate_time_safe(3).</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.bytes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bytes</span></span><a class="headerlink" href="#uuid.UUID.bytes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.bytes_le">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bytes_le</span></span><a class="headerlink" href="#uuid.UUID.bytes_le" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.clock_seq">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clock_seq</span></span><a class="headerlink" href="#uuid.UUID.clock_seq" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.clock_seq_hi_variant">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clock_seq_hi_variant</span></span><a class="headerlink" href="#uuid.UUID.clock_seq_hi_variant" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.clock_seq_low">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clock_seq_low</span></span><a class="headerlink" href="#uuid.UUID.clock_seq_low" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.fields">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fields</span></span><a class="headerlink" href="#uuid.UUID.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.hex">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hex</span></span><a class="headerlink" href="#uuid.UUID.hex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="uuid.UUID.int">
+<span class="sig-name descname"><span class="pre">int</span></span><a class="headerlink" href="#uuid.UUID.int" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="uuid.UUID.is_safe">
+<span class="sig-name descname"><span class="pre">is_safe</span></span><a class="headerlink" href="#uuid.UUID.is_safe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.node">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">node</span></span><a class="headerlink" href="#uuid.UUID.node" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.time">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time</span></span><a class="headerlink" href="#uuid.UUID.time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.time_hi_version">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_hi_version</span></span><a class="headerlink" href="#uuid.UUID.time_hi_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.time_low">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_low</span></span><a class="headerlink" href="#uuid.UUID.time_low" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.time_mid">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_mid</span></span><a class="headerlink" href="#uuid.UUID.time_mid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.urn">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">urn</span></span><a class="headerlink" href="#uuid.UUID.urn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.variant">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">variant</span></span><a class="headerlink" href="#uuid.UUID.variant" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="uuid.UUID.version">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#uuid.UUID.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="uuid.getnode">
+<span class="sig-prename descclassname"><span class="pre">uuid.</span></span><span class="sig-name descname"><span class="pre">getnode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#uuid.getnode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the hardware address as a 48-bit positive integer.</p>
+<p>The first time this runs, it may launch a separate program, which could
+be quite slow.  If all attempts to obtain the hardware address fail, we
+choose a random 48-bit number with its eighth bit set to 1 as recommended
+in RFC 4122.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="uuid.uuid1">
+<span class="sig-prename descclassname"><span class="pre">uuid.</span></span><span class="sig-name descname"><span class="pre">uuid1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clock_seq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uuid.uuid1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a UUID from a host ID, sequence number, and the current time.
+If ‘node’ is not given, getnode() is used to obtain the hardware
+address.  If ‘clock_seq’ is given, it is used as the sequence number;
+otherwise a random 14-bit sequence number is chosen.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="uuid.uuid3">
+<span class="sig-prename descclassname"><span class="pre">uuid.</span></span><span class="sig-name descname"><span class="pre">uuid3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">namespace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uuid.uuid3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a UUID from the MD5 hash of a namespace UUID and a name.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="uuid.uuid4">
+<span class="sig-prename descclassname"><span class="pre">uuid.</span></span><span class="sig-name descname"><span class="pre">uuid4</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#uuid.uuid4" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a random UUID.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="uuid.uuid5">
+<span class="sig-prename descclassname"><span class="pre">uuid.</span></span><span class="sig-name descname"><span class="pre">uuid5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">namespace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uuid.uuid5" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a UUID from the SHA-1 hash of a namespace UUID and a name.</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="singleton.html"
+                        title="previous chapter">singleton module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="connectors.html"
+                        title="next chapter">Connectors</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/uuid.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="connectors.html" title="Connectors"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="singleton.html" title="singleton module"
+             >previous</a> |</li>
+          <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="index.html">Silobuster Dedupe 1.0.0 documentation</a> &#187;
+              
+          </li>
+          <li class="nav-item nav-item-1"><a href="helpers.html" >Helper Libraries</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">uuid module</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+                     |
+                </li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2023, Silobuster Dedupe.
+    <br />
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br />
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br />
+    
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Last updated on None.
+    
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    </div>
+
+  </body>
+</html>

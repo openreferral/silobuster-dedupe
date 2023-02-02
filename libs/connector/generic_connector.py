@@ -1,11 +1,10 @@
 '''
-Postgres converter.
-Accepts Postgres Source connections.
+The generic connector inherits from the abstract BaseConnector class. This is the primary class to inherit connectors from, as it provides the methods for performing DataFrame operations.
 
-Transform function takes any number of functions to transform the data and then
-logs the transformations and writes the final, transformed records.
-
+All Connectors maintain an attribute "df", or DataFrame. Functions that mutate this dataframe are passed in the "transform" method. Once a transformation is complete, the "write" method then
+handles the results by executing the output handler's execute action.
 '''
+
 import pandas as pd
 
 from libs.connector.base_connector import BaseConnector
@@ -22,7 +21,7 @@ class GenericConnecter(BaseConnector):
             input_handler: BaseHandler, 
             output_handler: BaseHandler, 
             log_handler: BaseHandler,
-            write_logs: bool
+            write_logs: bool=True
         ):
 
         self.__input_handler = input_handler
@@ -87,16 +86,17 @@ class GenericConnecter(BaseConnector):
 
         for func in all_funcs:
             if self.write_logs and self.log_handler:
-                new_df = self.df.copy()
+                new_df = self.df.copy(deep=True)
                 props = func(new_df)      
                 
                 self.log_handler.log(props, job_id=job_id, step_name=func.__name__)
+                del new_df
 
             else:
-                func(self.df)
+                props = func(self.df)
 
-
-        self.df = props['results']            
+            self.df = props.get('results')
+            
         # Call this explicitly from other classes.
         # self.write()
         return job_id

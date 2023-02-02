@@ -1,0 +1,7 @@
+deduper
+=======
+
+.. toctree::
+   :maxdepth: 4
+
+   deduper

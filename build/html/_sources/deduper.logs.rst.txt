@@ -1,0 +1,69 @@
+deduper.logs package
+====================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   deduper.logs.migrations
+
+Submodules
+----------
+
+deduper.logs.admin module
+-------------------------
+
+.. automodule:: deduper.logs.admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+deduper.logs.apps module
+------------------------
+
+.. automodule:: deduper.logs.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+deduper.logs.models module
+--------------------------
+
+.. automodule:: deduper.logs.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+deduper.logs.tests module
+-------------------------
+
+.. automodule:: deduper.logs.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+deduper.logs.urls module
+------------------------
+
+.. automodule:: deduper.logs.urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+deduper.logs.views module
+-------------------------
+
+.. automodule:: deduper.logs.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: deduper.logs
+   :members:
+   :undoc-members:
+   :show-inheritance:

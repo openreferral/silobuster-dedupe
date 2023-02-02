@@ -11,3 +11,13 @@ class LogTypeNotImplemented(LogError):
 class InvalidQueryParams(LogError):
     def __init__(self, **params):
         self.params = params
+
+
+class LogDoesNotExist(LogError):
+    def __init__(self, **params):
+        self.params = params
+
+
+class LogMessageIncorrectlyFormatted(LogError):
+    def __init__(self, **params):
+        self.params = params

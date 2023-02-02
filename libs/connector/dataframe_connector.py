@@ -1,3 +1,6 @@
+'''
+Connectors of type "Dataframe" either accept input or they output to a Pandas DataFrame. These connectors are used in chaining multiple connectors together to perform complex operations.
+'''
 import pandas as pd
 
 from libs.connector.generic_connector import GenericConnecter

@@ -1,3 +1,7 @@
+'''
+Postgres handlers connect to a postgres database and manage the connection, read, and writes to the database.
+'''
+
 import os
 import psycopg2
 from psycopg2._psycopg import connection
@@ -17,6 +21,9 @@ class PostgresHandler(BaseDBHandler):
     
     @classmethod
     def load_param(cls, param: str, env_name: str) -> str:
+        '''
+        Used to load settings, such as conenction configuration, from the ENVIRONMENT if none are passed.
+        '''
         if param:
             return param
 
@@ -28,6 +35,14 @@ class PostgresHandler(BaseDBHandler):
 
 
     def __init__(self, db: str=None, username: str=None, password: str=None, host: str=None, port: int=None, query: str=None, schema: str='public', env_prefix: str="POSTGRES"):
+        '''
+        Accepts connection settings and an env_prefix. env_prefix defines the prefix in the ENVIRONMENT settings. For example, a prefix of POSTGRES will load the host name 
+        from the POSTGRES_HOST ENVIRONMENT parameter.
+
+        The query is unique what the handler is doing (i.e. input or output). It will either perform a read from the database or a write. This query is executed when the "read" or "write" methods 
+        are called from the connector.
+        '''
+
         # Set environment prefix to default if none
         if env_prefix is None:
             env_prefix = 'POSTGRES'
@@ -64,6 +79,9 @@ class PostgresHandler(BaseDBHandler):
 
 
     def __del__(self):
+        '''
+        Closes the connection automatically when the instance is deleted.
+        '''
         try:
             self.__conn.close()
         except Exception as e:
@@ -87,7 +105,9 @@ class PostgresHandler(BaseDBHandler):
 
     @property
     def port(self) -> int:
-        
+        '''
+        Raises ValueError if the port is not an integer.
+        '''
         try:
             return int(self.__port)
         except ValueError:
@@ -103,6 +123,9 @@ class PostgresHandler(BaseDBHandler):
 
     @query.setter
     def query(self, value: str):
+        '''
+        The query setter parses the querystring and removes newlines and double quotes from the beginning and the end of the string. This is helpful when passing a multiline string.
+        '''
         if isinstance(value, str):
             formatted_query = value.strip().replace('\n', '')
             lst_query = list(formatted_query)
@@ -144,6 +167,9 @@ class PostgresHandler(BaseDBHandler):
 
     @property
     def is_alive(self) -> bool:
+        '''
+        Returns whether the connection is "alive", or open.
+        '''
         with self.connection.cursor() as cursor:
             cursor.execute("select version()")
             data = cursor.fetchone()
@@ -155,7 +181,9 @@ class PostgresHandler(BaseDBHandler):
 
 
     def execute(self, query: str, args: list=None) -> object:
-        
+        '''
+        Executes the query, checking whether the passed query is of an allowed querytype as defined in the ALLOWED_QUERIES found in the "globals" module. Raises PostgresQueryError if the query is not allowed.
+        '''        
         query_type = query.split(' ')[0].lower()
 
         if query_type == 'select':

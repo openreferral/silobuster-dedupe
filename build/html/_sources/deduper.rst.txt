@@ -1,0 +1,95 @@
+deduper package
+===============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   deduper.deduplicate
+   deduper.logs
+   deduper.migrations
+
+Submodules
+----------
+
+deduper.admin module
+--------------------
+
+.. automodule:: deduper.admin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+deduper.apps module
+-------------------
+
+.. automodule:: deduper.apps
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+deduper.asgi module
+-------------------
+
+.. automodule:: deduper.asgi
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+deduper.manage module
+---------------------
+
+.. automodule:: deduper.manage
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+deduper.models module
+---------------------
+
+.. automodule:: deduper.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+deduper.settings module
+-----------------------
+
+.. automodule:: deduper.settings
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+deduper.tests module
+--------------------
+
+.. automodule:: deduper.tests
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+deduper.urls module
+-------------------
+
+.. automodule:: deduper.urls
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+deduper.views module
+--------------------
+
+.. automodule:: deduper.views
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: deduper
+   :members:
+   :undoc-members:
+   :show-inheritance:

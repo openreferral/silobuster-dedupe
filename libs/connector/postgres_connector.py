@@ -1,11 +1,7 @@
 '''
-Postgres converter.
-Accepts Postgres Source connections.
-
-Transform function takes any number of functions to transform the data and then
-logs the transformations and writes the final, transformed records.
-
+Postgres connectors are used to either connect to a Postgres database or write to a Postgres database.
 '''
+
 import pandas as pd
 
 from libs.connector.generic_connector import GenericConnecter
@@ -55,7 +51,9 @@ class PostgresToPostgresConnector(GenericConnecter):
 
     
 class PostgresToJsonConnector(GenericConnecter):
-
+    '''
+    The write method returns a list of dictionaries that can then be serialized into JSON.
+    '''
     def __init__(
             self,
             input_handler: PostgresHandler,
@@ -93,7 +91,9 @@ class PostgresToJsonConnector(GenericConnecter):
 
     
 class PostgresToDataframeConnector(GenericConnecter):
-
+    '''
+    The write method returns a deep copy of the df (DataFrame).
+    '''
     def __init__(
             self,
             input_handler: PostgresHandler,
@@ -121,5 +121,5 @@ class PostgresToDataframeConnector(GenericConnecter):
 
     
     def write(self):
-        return self.df.copy()
+        return self.df.copy(deep=True)
 

@@ -1,3 +1,7 @@
+'''
+Json handlers return/serialize the connectors dataframe.
+'''
+
 import json
 
 from libs.handler.base_handler import BaseHandler

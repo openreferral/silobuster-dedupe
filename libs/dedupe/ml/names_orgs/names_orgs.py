@@ -53,8 +53,8 @@ def dedupe_names_orgs(data: pd.DataFrame):
 
     final_obj = dict()
     final_obj['original'] = data
-    final_obj['dedupe_results'] = df_final
-    final_obj['results'] = {}
+    final_obj['duplicates'] = df_final
+    final_obj['results'] = data
     return final_obj
     # return data, df_final, 'dedupe_results'
 

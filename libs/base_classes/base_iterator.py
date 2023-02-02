@@ -1,3 +1,11 @@
+'''
+BaseIterator class is a generic base class for providing the functionality to create a collection of iterable classes.
+
+Initialization: attr_key is used to retrieve items based on that property. The default is "id"
+
+reset_iterator provides the ability to reset the iterator for consecutive loops.
+'''
+
 class BaseIterator:
 
     def __init__(self, group_list=None, attr_key='id'):

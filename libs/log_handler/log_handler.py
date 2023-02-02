@@ -1,3 +1,17 @@
+'''
+The Log Handler (Connector) is a singleton Handler/Connector that manages the log system. It accepts a handler as its input/output handlers. If connecting to a database, it requires a table of the following format:
+
+log_message: json
+id: str/UUID
+job_id: str/UUID
+iteration_id: str/UUID
+step_name: str
+contributor_name: str
+
+Writing logs: All connectors that perform an action will use the log handler to persist the logs of each step.
+Retrieving logs: The log handler retrieves the logs in various formats (i.e. dataframe, json)
+'''
+
 import pandas as pd 
 import json
 import xlsxwriter
@@ -13,7 +27,7 @@ from libs.uuid import random_uuid
 
 from libs.base_classes.singleton import SingletonMeta
 
-from libs.silobuster_exceptions.log_exceptions import InvalidQueryParams
+from libs.silobuster_exceptions.log_exceptions import InvalidQueryParams, LogDoesNotExist
 
 
 class LOG_DESTINATION:
@@ -157,8 +171,10 @@ class LogHandler(metaclass=SingletonMeta):
         
 
         if not valid_params:
-            raise InvalidQueryParams(kwargs)
+            raise InvalidQueryParams(**kwargs)
 
+        if not results:
+            raise LogDoesNotExist(**kwargs)
 
         return results[0]
 

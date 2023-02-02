@@ -1,3 +1,7 @@
+'''
+Dataframe handlers return the dataframe of the connector
+'''
+
 import pandas as pd
 
 from libs.handler.base_handler import BaseHandler
