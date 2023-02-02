@@ -1,0 +1,10 @@
+deduper.deduplicate.migrations package
+======================================
+
+Module contents
+---------------
+
+.. automodule:: deduper.deduplicate.migrations
+   :members:
+   :undoc-members:
+   :show-inheritance:
