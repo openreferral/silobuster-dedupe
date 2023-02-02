@@ -27,7 +27,7 @@ class PostgresHandler(BaseDBHandler):
         return val
 
 
-    def __init__(self, db: str=None, username: str=None, password: str=None, host: str=None, port: int=None, query: str=None, env_prefix: str="POSTGRES"):
+    def __init__(self, db: str=None, username: str=None, password: str=None, host: str=None, port: int=None, query: str=None, schema: str='public', env_prefix: str="POSTGRES"):
         # Set environment prefix to default if none
         if env_prefix is None:
             env_prefix = 'POSTGRES'
@@ -36,6 +36,7 @@ class PostgresHandler(BaseDBHandler):
         self.__password = PostgresHandler.load_param(password, env_prefix + '_PASSWORD')
         self.__host = PostgresHandler.load_param(host, env_prefix + '_HOST')
         self.__port = PostgresHandler.load_param(port, env_prefix + '_PORT')
+        self.__schema = schema
         self.query = query
 
         
@@ -46,7 +47,8 @@ class PostgresHandler(BaseDBHandler):
             user=self.username,
             password=self.password,
             host=self.host,
-            port=self.port
+            port=self.port,
+             options=f'-c search_path={schema}',
         )
 
     def __str__(self):
@@ -55,6 +57,7 @@ class PostgresHandler(BaseDBHandler):
         msgs.append('Port: ' + str(self.port))
         msgs.append('Database: ' + self.db)
         msgs.append('Username: ' + self.username)
+        msgs.append(f'Schema: {self.schema}')
         msgs.append('Connection Alive? ' + 'Yes' if self.is_alive else 'No')
 
         return '\n'.join(msgs)
@@ -70,6 +73,11 @@ class PostgresHandler(BaseDBHandler):
     @property
     def env_prefix(self) -> str:
         return self.__env_prefix
+
+
+    @property
+    def schema(self) -> str:
+        return self.__schema
 
 
     @property
@@ -113,6 +121,7 @@ class PostgresHandler(BaseDBHandler):
         else:
             self.__query = ''
 
+
     @property
     def db(self) -> str:
         return self.__db
@@ -145,14 +154,14 @@ class PostgresHandler(BaseDBHandler):
         return False
 
 
-    def execute(self, query: str, *args) -> object:
+    def execute(self, query: str, args: list=None) -> object:
         
         query_type = query.split(' ')[0].lower()
 
         if query_type == 'select':
             with self.connection.cursor(cursor_factory=extras.RealDictCursor) as cursor:
                 try:
-                    cursor.execute(query)
+                    cursor.execute(query, args)
                 except Exception as e:
                     raise PostgresQueryError(query, e)
 
@@ -163,7 +172,7 @@ class PostgresHandler(BaseDBHandler):
         elif query_type in ALLOWED_QUERIES:
             with self.connection.cursor() as cursor:
                 try:
-                    cursor.execute(query, *args) 
+                    cursor.execute(query, args) 
                     self.connection.commit()           
                 except Exception as e:
                     raise PostgresQueryError(query, '', e)

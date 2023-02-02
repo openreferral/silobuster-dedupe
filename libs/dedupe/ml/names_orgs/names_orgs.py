@@ -48,8 +48,15 @@ def dedupe_names_orgs(data: pd.DataFrame):
 
     )
 
+
     data.rename(columns=reverse_map, inplace=True)
-    return data, df_final, 'dedupe_results'
+
+    final_obj = dict()
+    final_obj['original'] = data
+    final_obj['dedupe_results'] = df_final
+    final_obj['results'] = {}
+    return final_obj
+    # return data, df_final, 'dedupe_results'
 
 
 

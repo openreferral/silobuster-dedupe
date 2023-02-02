@@ -3,5 +3,6 @@
 ALLOWED_QUERIES = [
     'select', 
     'insert', 
-    'update'
+    'update',
+    'set',
 ]

@@ -88,14 +88,16 @@ class GenericConnecter(BaseConnector):
         for func in all_funcs:
             if self.write_logs and self.log_handler:
                 new_df = self.df.copy()
-                results, changes, *additional_args = func(new_df)            
-                self.log_handler.log(results, changes, *additional_args, job_id=job_id, step_name=func.__name__)
+                props = func(new_df)      
+                
+                self.log_handler.log(props, job_id=job_id, step_name=func.__name__)
 
             else:
                 func(self.df)
 
-            self.df = new_df
 
-            
-            return to_list_of_dicts(new_df)
+        self.df = props['results']            
+        # Call this explicitly from other classes.
+        # self.write()
+        return job_id
 

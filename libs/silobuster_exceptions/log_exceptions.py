@@ -6,3 +6,8 @@ class LogError(Exception):
 class LogTypeNotImplemented(LogError):
     def __init__(self, log_type):
         self.log_type = log_type
+
+
+class InvalidQueryParams(LogError):
+    def __init__(self, **params):
+        self.params = params
