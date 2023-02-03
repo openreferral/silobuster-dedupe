@@ -63,6 +63,7 @@ class LogHandler(metaclass=SingletonMeta):
             
         return "\n".join(msgs)
 
+
     @property
     def retrieve_query(self) -> str:
         return self.__retrieve_query
@@ -200,3 +201,4 @@ class LogHandler(metaclass=SingletonMeta):
         writer.close()
         return True
         
+

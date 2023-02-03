@@ -13,4 +13,7 @@ class JsonHandler(BaseHandler):
 
 
     def execute(self, data: dict) -> dict:
+        '''
+        The JsonHandler does not take any action on execute.
+        '''
         pass

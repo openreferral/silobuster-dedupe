@@ -47,19 +47,23 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="base_handler.html"
-                        title="previous chapter">base_handler module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="dataframe_handler.html"
-                        title="next chapter">dataframe_handler module</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/postgres_handler.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+<h3><a href="index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connectors.html">Connectors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="handlers.html">Handlers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="base_handler.html">base_handler module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">postgres_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe_handler.html">dataframe_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json_handler.html">json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log_handler.html">log_handler module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -70,6 +74,12 @@
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="base_handler.html"
+                        title="previous chapter">base_handler module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dataframe_handler.html"
+                        title="next chapter">dataframe_handler module</a></p>
         </nav>
     </div>
 </div>
@@ -126,7 +136,7 @@
             
   <section id="module-postgres_handler">
 <span id="postgres-handler-module"></span><h1>postgres_handler module<a class="headerlink" href="#module-postgres_handler" title="Permalink to this headline">¶</a></h1>
-<p>Postgres handlers connect to a postgres database and manage the connection, read, and writes to the database.</p>
+<p>Postgres handlers connect to a postgres database and manage the connection. The class reads and writes to the database using the “execute” method.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="postgres_handler.PostgresHandler">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">postgres_handler.</span></span><span class="sig-name descname"><span class="pre">PostgresHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schema</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'public'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_prefix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'POSTGRES'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#postgres_handler.PostgresHandler" title="Permalink to this definition">¶</a></dt>
@@ -149,7 +159,8 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="postgres_handler.PostgresHandler.execute">
 <span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="headerlink" href="#postgres_handler.PostgresHandler.execute" title="Permalink to this definition">¶</a></dt>
-<dd><p>Executes the query, checking whether the passed query is of an allowed querytype as defined in the ALLOWED_QUERIES found in the “globals” module. Raises PostgresQueryError if the query is not allowed.</p>
+<dd><p>Executes the query attribute. It checks whether the passed query is of an allowed querytype as defined in the ALLOWED_QUERIES found in the “globals” module. 
+Raises PostgresQueryError if the query is not allowed.</p>
 </dd></dl>
 
 <dl class="py property">
@@ -206,19 +217,23 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="base_handler.html"
-                        title="previous chapter">base_handler module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="dataframe_handler.html"
-                        title="next chapter">dataframe_handler module</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/postgres_handler.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+<h3><a href="index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connectors.html">Connectors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="handlers.html">Handlers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="base_handler.html">base_handler module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">postgres_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe_handler.html">dataframe_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json_handler.html">json_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log_handler.html">log_handler module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -229,6 +244,12 @@
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="base_handler.html"
+                        title="previous chapter">base_handler module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dataframe_handler.html"
+                        title="next chapter">dataframe_handler module</a></p>
         </div>
       </div>
       <div class="clearer"></div>

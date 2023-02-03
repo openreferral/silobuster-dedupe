@@ -3,6 +3,7 @@ Postgres connectors are used to either connect to a Postgres database or write t
 '''
 
 import pandas as pd
+import json
 
 from libs.connector.generic_connector import GenericConnecter
 
@@ -67,32 +68,43 @@ class PostgresToJsonConnector(GenericConnecter):
 
     @property
     def input_fields(self):
+        '''
+        Returns the columns (fields) of the Input Handler's query columns
+        '''
         return list(self.df.columns)
 
 
     @property
     def output_fields(self):
+        '''
+        Returns the columns (fields) of the Out Handler's query columns
+        '''
         return list(self.df.columns)
 
     
     def read(self):
+        '''
+        Calls the Handler's "execute" method and loads it into a dataframe.
+        '''
         data_df = pd.DataFrame.from_records(self.input_handler.execute(self.input_handler.query))
         self.df = data_df
 
     
     def write(self):
-        return to_list_of_dicts(self.df)
+        '''
+        The JsonHandler implements a null "execute" method because it does not handle any actual write operations. Instead, the write method returns the json data.
+        '''
+        return json.dumps(to_list_of_dicts(self.df))
 
 
     def transform(self, *funcs):
         job_id = super().transform(*funcs)
-        self.write()
         return job_id
 
     
-class PostgresToDataframeConnector(GenericConnecter):
+class PostgresToDataFrameConnector(GenericConnecter):
     '''
-    The write method returns a deep copy of the df (DataFrame).
+    The Connector handles an input postgres connection and outputs a copy of its DataFrame. This is especially useful in chaining operations using a DataFrameTo_________Connector.
     '''
     def __init__(
             self,
@@ -121,5 +133,8 @@ class PostgresToDataframeConnector(GenericConnecter):
 
     
     def write(self):
+        '''
+        The DataFrameHandler implements a null "execute" method because it does not handle any actual write operations. Instead, the write method returns a deep copy of the Connector instance dataframe.        
+        '''
         return self.df.copy(deep=True)
 

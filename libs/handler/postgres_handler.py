@@ -1,5 +1,5 @@
 '''
-Postgres handlers connect to a postgres database and manage the connection, read, and writes to the database.
+Postgres handlers connect to a postgres database and manage the connection. The class reads and writes to the database using the "execute" method.
 '''
 
 import os
@@ -182,7 +182,8 @@ class PostgresHandler(BaseDBHandler):
 
     def execute(self, query: str, args: list=None) -> object:
         '''
-        Executes the query, checking whether the passed query is of an allowed querytype as defined in the ALLOWED_QUERIES found in the "globals" module. Raises PostgresQueryError if the query is not allowed.
+        Executes the query attribute. It checks whether the passed query is of an allowed querytype as defined in the ALLOWED_QUERIES found in the "globals" module. 
+        Raises PostgresQueryError if the query is not allowed.
         '''        
         query_type = query.split(' ')[0].lower()
 

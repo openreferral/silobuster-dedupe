@@ -17,7 +17,9 @@
     <script src="_static/doctools.js"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /><link rel="shortcut icon" type="image/png" href="_static/py.svg" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Exceptions" href="exceptions.html" />
+    <link rel="prev" title="json_handler module" href="json_handler.html" /><link rel="shortcut icon" type="image/png" href="_static/py.svg" />
             <script type="text/javascript" src="_static/copybutton.js"></script>
             <script type="text/javascript" src="_static/menu.js"></script> 
   </head>
@@ -45,13 +47,23 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/log_handler.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+<h3><a href="index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connectors.html">Connectors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="handlers.html">Handlers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="base_handler.html">base_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres_handler.html">postgres_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe_handler.html">dataframe_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json_handler.html">json_handler module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">log_handler module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -62,6 +74,12 @@
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="json_handler.html"
+                        title="previous chapter">json_handler module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="exceptions.html"
+                        title="next chapter">Exceptions</a></p>
         </nav>
     </div>
 </div>
@@ -75,6 +93,12 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="exceptions.html" title="Exceptions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="json_handler.html" title="json_handler module"
+             accesskey="P">previous</a> |</li>
           <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
@@ -86,6 +110,7 @@
               <a href="index.html">Silobuster Dedupe 1.0.0 documentation</a> &#187;
               
           </li>
+          <li class="nav-item nav-item-1"><a href="handlers.html" accesskey="U">Handlers</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">log_handler module</a></li>
                 <li class="right">
                     
@@ -196,13 +221,23 @@ Retrieving logs: The log handler retrieves the logs in various formats (i.e. dat
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/log_handler.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+<h3><a href="index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connectors.html">Connectors</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="handlers.html">Handlers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="base_handler.html">base_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgres_handler.html">postgres_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe_handler.html">dataframe_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json_handler.html">json_handler module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">log_handler module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -213,6 +248,12 @@ Retrieving logs: The log handler retrieves the logs in various formats (i.e. dat
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="json_handler.html"
+                        title="previous chapter">json_handler module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="exceptions.html"
+                        title="next chapter">Exceptions</a></p>
         </div>
       </div>
       <div class="clearer"></div>
@@ -226,6 +267,12 @@ Retrieving logs: The log handler retrieves the logs in various formats (i.e. dat
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="exceptions.html" title="Exceptions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="json_handler.html" title="json_handler module"
+             >previous</a> |</li>
           <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
           <li><a href="https://www.python.org/">Python</a> &#187;</li>
           <li class="switchers">
@@ -237,6 +284,7 @@ Retrieving logs: The log handler retrieves the logs in various formats (i.e. dat
               <a href="index.html">Silobuster Dedupe 1.0.0 documentation</a> &#187;
               
           </li>
+          <li class="nav-item nav-item-1"><a href="handlers.html" >Handlers</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">log_handler module</a></li>
                 <li class="right">
                     

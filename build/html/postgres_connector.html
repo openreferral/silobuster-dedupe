@@ -47,19 +47,22 @@
     <div class="menu-wrapper">
         <nav class="menu" role="navigation" aria-label="main navigation">
             <div class="language_switcher_placeholder"></div>
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="dataframe_connector.html"
-                        title="previous chapter">dataframe_connector module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="handlers.html"
-                        title="next chapter">Handlers</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/postgres_connector.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+<h3><a href="index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="connectors.html">Connectors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="base_connector.html">base_connector module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic_connector.html">generic_connector module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe_connector.html">dataframe_connector module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">postgres_connector module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="handlers.html">Handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -70,6 +73,12 @@
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dataframe_connector.html"
+                        title="previous chapter">dataframe_connector module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="handlers.html"
+                        title="next chapter">Handlers</a></p>
         </nav>
     </div>
 </div>
@@ -128,29 +137,30 @@
 <span id="postgres-connector-module"></span><h1>postgres_connector module<a class="headerlink" href="#module-postgres_connector" title="Permalink to this headline">¶</a></h1>
 <p>Postgres connectors are used to either connect to a Postgres database or write to a Postgres database.</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="postgres_connector.PostgresToDataframeConnector">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">postgres_connector.</span></span><span class="sig-name descname"><span class="pre">PostgresToDataframeConnector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.postgres_handler.PostgresHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.json_handler.JsonHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.log_handler.log_handler.LogHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_logs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#postgres_connector.PostgresToDataframeConnector" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="postgres_connector.PostgresToDataFrameConnector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">postgres_connector.</span></span><span class="sig-name descname"><span class="pre">PostgresToDataFrameConnector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.postgres_handler.PostgresHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.json_handler.JsonHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.log_handler.log_handler.LogHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_logs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#postgres_connector.PostgresToDataFrameConnector" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">libs.connector.generic_connector.GenericConnecter</span></code></p>
-<p>The write method returns a deep copy of the df (DataFrame).</p>
+<p>The Connector handles an input postgres connection and outputs a copy of its DataFrame. This is especially useful in chaining operations using a DataFrameTo_________Connector.</p>
 <dl class="py property">
-<dt class="sig sig-object py" id="postgres_connector.PostgresToDataframeConnector.input_fields">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input_fields</span></span><a class="headerlink" href="#postgres_connector.PostgresToDataframeConnector.input_fields" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="postgres_connector.PostgresToDataFrameConnector.input_fields">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input_fields</span></span><a class="headerlink" href="#postgres_connector.PostgresToDataFrameConnector.input_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="postgres_connector.PostgresToDataframeConnector.output_fields">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_fields</span></span><a class="headerlink" href="#postgres_connector.PostgresToDataframeConnector.output_fields" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="postgres_connector.PostgresToDataFrameConnector.output_fields">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_fields</span></span><a class="headerlink" href="#postgres_connector.PostgresToDataFrameConnector.output_fields" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="postgres_connector.PostgresToDataframeConnector.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#postgres_connector.PostgresToDataframeConnector.read" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="postgres_connector.PostgresToDataFrameConnector.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#postgres_connector.PostgresToDataFrameConnector.read" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="postgres_connector.PostgresToDataframeConnector.write">
-<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#postgres_connector.PostgresToDataframeConnector.write" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="postgres_connector.PostgresToDataFrameConnector.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#postgres_connector.PostgresToDataFrameConnector.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>The DataFrameHandler implements a null “execute” method because it does not handle any actual write operations. Instead, the write method returns a deep copy of the Connector instance dataframe.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -162,17 +172,20 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="postgres_connector.PostgresToJsonConnector.input_fields">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input_fields</span></span><a class="headerlink" href="#postgres_connector.PostgresToJsonConnector.input_fields" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns the columns (fields) of the Input Handler’s query columns</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="postgres_connector.PostgresToJsonConnector.output_fields">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_fields</span></span><a class="headerlink" href="#postgres_connector.PostgresToJsonConnector.output_fields" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns the columns (fields) of the Out Handler’s query columns</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="postgres_connector.PostgresToJsonConnector.read">
 <span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#postgres_connector.PostgresToJsonConnector.read" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Calls the Handler’s “execute” method and loads it into a dataframe.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="postgres_connector.PostgresToJsonConnector.transform">
@@ -182,7 +195,8 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="postgres_connector.PostgresToJsonConnector.write">
 <span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#postgres_connector.PostgresToJsonConnector.write" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>The JsonHandler implements a null “execute” method because it does not handle any actual write operations. Instead, the write method returns the json data.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -221,19 +235,22 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="dataframe_connector.html"
-                        title="previous chapter">dataframe_connector module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="handlers.html"
-                        title="next chapter">Handlers</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/postgres_connector.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+<h3><a href="index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="connectors.html">Connectors</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="base_connector.html">base_connector module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generic_connector.html">generic_connector module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataframe_connector.html">dataframe_connector module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">postgres_connector module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="handlers.html">Handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -244,6 +261,12 @@
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dataframe_connector.html"
+                        title="previous chapter">dataframe_connector module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="handlers.html"
+                        title="next chapter">Handlers</a></p>
         </div>
       </div>
       <div class="clearer"></div>
