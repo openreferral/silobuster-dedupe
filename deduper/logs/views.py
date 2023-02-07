@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render
 
 from rest_framework.views import APIView
@@ -12,7 +14,10 @@ from libs.handler.postgres_handler import PostgresHandler
 class Index(APIView):
     def get(self, request):
         return Response({
-            'available endpoints': 'config'
+            'available endpoints': 'config, json',
+            'instructions': 'Logs can be retrieved one of two ways. 1. pass an "id" of the log. 2. pass a "job_id" and a "step_name"',
+            'config': 'Change the settings for the log configuration',
+            'json': 'retrieve a json view of the log',
         })
 
 class LogConfig(APIView):
@@ -43,3 +48,16 @@ class LogConfig(APIView):
         return Response({
             'status': 'no_action'
         })
+    
+
+class JSONView(APIView):
+    def get(self, request):
+        data = request.data
+        kwargs = {k:v for k,v in data.items()} # Not sure if this is needed. But converting to regular dict anyways.
+        logs = app_logger.get(**kwargs)
+
+        return Response({
+            'status': 'success',
+            'payload': logs
+        })
+        

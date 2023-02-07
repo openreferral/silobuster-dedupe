@@ -48,6 +48,7 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest_server_deduplication.html">REST API Deduplication Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="connectors.html">Connectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="handlers.html">Handlers</a></li>
@@ -199,10 +200,20 @@
 </li>
       <li><a href="uuid.html#uuid.UUID.clock_seq_low">clock_seq_low (uuid.UUID property)</a>
 </li>
-      <li><a href="postgres_handler.html#postgres_handler.PostgresHandler.connection">connection (postgres_handler.PostgresHandler property)</a>
+      <li><a href="base_handler.html#base_handler.BaseDBHandler.columns">columns (base_handler.BaseDBHandler property)</a>
+
+      <ul>
+        <li><a href="json_handler.html#json_handler.JsonHandler.columns">(json_handler.JsonHandler property)</a>
 </li>
+        <li><a href="postgres_handler.html#postgres_handler.PostgresHandler.columns">(postgres_handler.PostgresHandler property)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dataframe_handler.html#dataframe_handler.DataFrameHandler.columns">columns() (dataframe_handler.DataFrameHandler method)</a>
+</li>
+      <li><a href="postgres_handler.html#postgres_handler.PostgresHandler.connection">connection (postgres_handler.PostgresHandler property)</a>
+</li>
       <li>
     connection_exceptions
 
@@ -236,9 +247,11 @@
         <li><a href="dataframe_handler.html#module-dataframe_handler">module</a>
 </li>
       </ul></li>
-      <li><a href="dataframe_handler.html#dataframe_handler.DataframeHandler">DataframeHandler (class in dataframe_handler)</a>
+      <li><a href="dataframe_handler.html#dataframe_handler.DataFrameHandler">DataFrameHandler (class in dataframe_handler)</a>
 </li>
-      <li><a href="dataframe_connector.html#dataframe_connector.DataframeToDataframeConnector">DataframeToDataframeConnector (class in dataframe_connector)</a>
+      <li><a href="dataframe_connector.html#dataframe_connector.DataFrameToDataFrameConnector">DataFrameToDataFrameConnector (class in dataframe_connector)</a>
+</li>
+      <li><a href="dataframe_connector.html#dataframe_connector.DataFrameToPostgresConnector">DataFrameToPostgresConnector (class in dataframe_connector)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -255,6 +268,8 @@
       <li><a href="base_connector.html#base_connector.BaseConnector.df">df (base_connector.BaseConnector property)</a>
 
       <ul>
+        <li><a href="dataframe_handler.html#dataframe_handler.DataFrameHandler.df">(dataframe_handler.DataFrameHandler property)</a>
+</li>
         <li><a href="generic_connector.html#generic_connector.GenericConnecter.df">(generic_connector.GenericConnecter property)</a>
 </li>
       </ul></li>
@@ -264,12 +279,18 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="base_connector.html#base_connector.BaseConnector.enrich">enrich() (base_connector.BaseConnector method)</a>
+
+      <ul>
+        <li><a href="generic_connector.html#generic_connector.GenericConnecter.enrich">(generic_connector.GenericConnecter method)</a>
+</li>
+      </ul></li>
       <li><a href="postgres_handler.html#postgres_handler.PostgresHandler.env_prefix">env_prefix (postgres_handler.PostgresHandler property)</a>
 </li>
       <li><a href="base_handler.html#base_handler.BaseHandler.execute">execute() (base_handler.BaseHandler method)</a>
 
       <ul>
-        <li><a href="dataframe_handler.html#dataframe_handler.DataframeHandler.execute">(dataframe_handler.DataframeHandler method)</a>
+        <li><a href="dataframe_handler.html#dataframe_handler.DataFrameHandler.execute">(dataframe_handler.DataFrameHandler method)</a>
 </li>
         <li><a href="json_handler.html#json_handler.JsonHandler.execute">(json_handler.JsonHandler method)</a>
 </li>
@@ -303,12 +324,18 @@
       </ul></li>
       <li><a href="generic_connector.html#generic_connector.GenericConnecter">GenericConnecter (class in generic_connector)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="log_handler.html#log_handler.LogHandler.get">get() (log_handler.LogHandler method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="log_handler.html#log_handler.LogHandler.get_dataframe">get_dataframe() (log_handler.LogHandler method)</a>
 </li>
+      <li><a href="base_connector.html#base_connector.BaseConnector.get_input_handler">get_input_handler() (base_connector.BaseConnector method)</a>
+
+      <ul>
+        <li><a href="generic_connector.html#generic_connector.GenericConnecter.get_input_handler">(generic_connector.GenericConnecter method)</a>
+</li>
+      </ul></li>
       <li><a href="uuid.html#uuid.getnode">getnode() (in module uuid)</a>
 </li>
   </ul></td>
@@ -335,14 +362,10 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="base_connector.html#base_connector.BaseConnector.input_fields">input_fields (base_connector.BaseConnector property)</a>
+      <li><a href="base_connector.html#base_connector.BaseConnector.input_columns">input_columns (base_connector.BaseConnector property)</a>
 
       <ul>
-        <li><a href="postgres_connector.html#postgres_connector.PostgresToDataFrameConnector.input_fields">(postgres_connector.PostgresToDataFrameConnector property)</a>
-</li>
-        <li><a href="postgres_connector.html#postgres_connector.PostgresToJsonConnector.input_fields">(postgres_connector.PostgresToJsonConnector property)</a>
-</li>
-        <li><a href="postgres_connector.html#postgres_connector.PostgresToPostgresConnector.input_fields">(postgres_connector.PostgresToPostgresConnector property)</a>
+        <li><a href="generic_connector.html#generic_connector.GenericConnecter.input_columns">(generic_connector.GenericConnecter property)</a>
 </li>
       </ul></li>
       <li><a href="base_connector.html#base_connector.BaseConnector.input_handler">input_handler (base_connector.BaseConnector property)</a>
@@ -369,8 +392,16 @@
 <h2 id="J">J</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="base_connector.html#base_connector.BaseConnector.join">join() (base_connector.BaseConnector method)</a>
+
+      <ul>
+        <li><a href="generic_connector.html#generic_connector.GenericConnecter.join">(generic_connector.GenericConnecter method)</a>
+</li>
+      </ul></li>
       <li><a href="log_handler.html#log_handler.LOG_DESTINATION.JSON">JSON (log_handler.LOG_DESTINATION attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     json_handler
 
@@ -378,8 +409,6 @@
         <li><a href="json_handler.html#module-json_handler">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="json_handler.html#json_handler.JsonHandler">JsonHandler (class in json_handler)</a>
 </li>
   </ul></td>
@@ -470,6 +499,14 @@
 </li>
       </ul></li>
   </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="base_connector.html#base_connector.BaseConnector.mutate">mutate() (base_connector.BaseConnector method)</a>
+
+      <ul>
+        <li><a href="generic_connector.html#generic_connector.GenericConnecter.mutate">(generic_connector.GenericConnecter method)</a>
+</li>
+      </ul></li>
+  </ul></td>
 </tr></table>
 
 <h2 id="N">N</h2>
@@ -485,14 +522,10 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="base_iterator.html#base_iterator.BaseIterator.objList">objList (base_iterator.BaseIterator property)</a>
 </li>
-      <li><a href="base_connector.html#base_connector.BaseConnector.output_fields">output_fields (base_connector.BaseConnector property)</a>
+      <li><a href="base_connector.html#base_connector.BaseConnector.output_columns">output_columns (base_connector.BaseConnector property)</a>
 
       <ul>
-        <li><a href="postgres_connector.html#postgres_connector.PostgresToDataFrameConnector.output_fields">(postgres_connector.PostgresToDataFrameConnector property)</a>
-</li>
-        <li><a href="postgres_connector.html#postgres_connector.PostgresToJsonConnector.output_fields">(postgres_connector.PostgresToJsonConnector property)</a>
-</li>
-        <li><a href="postgres_connector.html#postgres_connector.PostgresToPostgresConnector.output_fields">(postgres_connector.PostgresToPostgresConnector property)</a>
+        <li><a href="generic_connector.html#generic_connector.GenericConnecter.output_columns">(generic_connector.GenericConnecter property)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -587,7 +620,11 @@
       <li><a href="base_connector.html#base_connector.BaseConnector.read">read() (base_connector.BaseConnector method)</a>
 
       <ul>
-        <li><a href="dataframe_connector.html#dataframe_connector.DataframeToDataframeConnector.read">(dataframe_connector.DataframeToDataframeConnector method)</a>
+        <li><a href="dataframe_connector.html#dataframe_connector.DataFrameToDataFrameConnector.read">(dataframe_connector.DataFrameToDataFrameConnector method)</a>
+</li>
+        <li><a href="dataframe_connector.html#dataframe_connector.DataFrameToPostgresConnector.read">(dataframe_connector.DataFrameToPostgresConnector method)</a>
+</li>
+        <li><a href="generic_connector.html#generic_connector.GenericConnecter.read">(generic_connector.GenericConnecter method)</a>
 </li>
         <li><a href="postgres_connector.html#postgres_connector.PostgresToDataFrameConnector.read">(postgres_connector.PostgresToDataFrameConnector method)</a>
 </li>
@@ -598,6 +635,12 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="base_connector.html#base_connector.BaseConnector.reduce">reduce() (base_connector.BaseConnector method)</a>
+
+      <ul>
+        <li><a href="generic_connector.html#generic_connector.GenericConnecter.reduce">(generic_connector.GenericConnecter method)</a>
+</li>
+      </ul></li>
       <li><a href="base_iterator.html#base_iterator.BaseIterator.reset_iterator">reset_iterator() (base_iterator.BaseIterator method)</a>
 </li>
       <li><a href="log_handler.html#log_handler.LogHandler.retrieve_query">retrieve_query (log_handler.LogHandler property)</a>
@@ -714,7 +757,9 @@
       <li><a href="base_connector.html#base_connector.BaseConnector.write">write() (base_connector.BaseConnector method)</a>
 
       <ul>
-        <li><a href="dataframe_connector.html#dataframe_connector.DataframeToDataframeConnector.write">(dataframe_connector.DataframeToDataframeConnector method)</a>
+        <li><a href="dataframe_connector.html#dataframe_connector.DataFrameToDataFrameConnector.write">(dataframe_connector.DataFrameToDataFrameConnector method)</a>
+</li>
+        <li><a href="generic_connector.html#generic_connector.GenericConnecter.write">(generic_connector.GenericConnecter method)</a>
 </li>
         <li><a href="postgres_connector.html#postgres_connector.PostgresToDataFrameConnector.write">(postgres_connector.PostgresToDataFrameConnector method)</a>
 </li>
@@ -746,6 +791,7 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest_server_deduplication.html">REST API Deduplication Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="connectors.html">Connectors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="handlers.html">Handlers</a></li>

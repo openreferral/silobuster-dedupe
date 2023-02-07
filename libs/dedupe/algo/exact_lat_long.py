@@ -1,3 +1,8 @@
+'''
+Deduplicates HSDS3 formatted latitude and longitude using exact matches.
+'''
+
+
 import pandas as pd
 
 

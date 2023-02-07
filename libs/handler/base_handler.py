@@ -20,36 +20,42 @@ class BaseDBHandler(BaseHandler):
 
     @property
     @abstractmethod
-    def db(self):
+    def db(self) -> str:
         pass
 
 
     @property
     @abstractmethod
-    def username(self):
+    def username(self) -> str:
         pass
 
 
     @property
     @abstractmethod
-    def password(self):
+    def password(self) -> str:
         pass
 
 
     @property
     @abstractmethod
-    def host(self):
+    def host(self) -> str:
         pass
 
 
     @property
     @abstractmethod
-    def port(self):
+    def port(self) -> str:
         pass
 
 
     @property
     @abstractmethod
-    def query(self):
+    def query(self) -> str:
+        pass
+
+
+    @property
+    @abstractmethod
+    def columns(self) -> list:
         pass
 

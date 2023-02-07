@@ -51,6 +51,7 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest_server_deduplication.html">REST API Deduplication Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="connectors.html">Connectors</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="handlers.html">Handlers</a><ul class="current">
@@ -144,33 +145,38 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">base_handler.</span></span><span class="sig-name descname"><span class="pre">BaseDBHandler</span></span><a class="headerlink" href="#base_handler.BaseDBHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#base_handler.BaseHandler" title="base_handler.BaseHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">base_handler.BaseHandler</span></code></a></p>
 <dl class="py property">
+<dt class="sig sig-object py" id="base_handler.BaseDBHandler.columns">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">columns</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#base_handler.BaseDBHandler.columns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="base_handler.BaseDBHandler.db">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">db</span></span><a class="headerlink" href="#base_handler.BaseDBHandler.db" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">db</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#base_handler.BaseDBHandler.db" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="base_handler.BaseDBHandler.host">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">host</span></span><a class="headerlink" href="#base_handler.BaseDBHandler.host" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">host</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#base_handler.BaseDBHandler.host" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="base_handler.BaseDBHandler.password">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">password</span></span><a class="headerlink" href="#base_handler.BaseDBHandler.password" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">password</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#base_handler.BaseDBHandler.password" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="base_handler.BaseDBHandler.port">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">port</span></span><a class="headerlink" href="#base_handler.BaseDBHandler.port" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">port</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#base_handler.BaseDBHandler.port" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="base_handler.BaseDBHandler.query">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">query</span></span><a class="headerlink" href="#base_handler.BaseDBHandler.query" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#base_handler.BaseDBHandler.query" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="base_handler.BaseDBHandler.username">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">username</span></span><a class="headerlink" href="#base_handler.BaseDBHandler.username" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">username</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#base_handler.BaseDBHandler.username" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -199,6 +205,7 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest_server_deduplication.html">REST API Deduplication Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="connectors.html">Connectors</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="handlers.html">Handlers</a><ul class="current">

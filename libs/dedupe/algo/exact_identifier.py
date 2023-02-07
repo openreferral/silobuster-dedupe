@@ -1,3 +1,8 @@
+'''
+Deduplicates HSDS3 formatted organization identifiers using exact match on the identifiers
+'''
+
+
 import pandas as pd
 
 

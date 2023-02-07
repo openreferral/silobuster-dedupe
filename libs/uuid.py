@@ -20,4 +20,7 @@ def convert_string_to_uuid(s: str) -> uuid:
     raise InvalidUuidError(s)
 
 def random_uuid() -> uuid:
-    return uuid.uuid4()
+    return str(uuid.uuid4())
+
+def random_uuid1() -> uuid:
+    return str(uuid.uuid1())

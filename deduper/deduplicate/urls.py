@@ -5,5 +5,6 @@ from . import views
 
 urlpatterns = [
     path('options', views.Options.as_view()),
+    path('', views.Instructions.as_view()),
     path('database/database', views.DatabaseToDatabase.as_view())
 ]

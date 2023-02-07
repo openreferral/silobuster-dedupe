@@ -66,6 +66,7 @@ class PostgresHandler(BaseDBHandler):
              options=f'-c search_path={schema}',
         )
 
+
     def __str__(self):
         msgs = list()
         msgs.append('Host: ' + self.host)
@@ -120,6 +121,22 @@ class PostgresHandler(BaseDBHandler):
     def query(self) -> str:
         return self.__query
 
+
+    @property
+    def columns(self) -> list:
+        if "insert" in self.query.lower()[:10]:
+            s = self.query
+            fields = s[s.find("(")+1:s.find(")")]
+            return [s.strip() for s in fields.split(',')]
+        
+        elif "select" in self.query.lower()[:10]:
+            s = self.query
+            fields_str = s[s.lower().find("select ")+7:]
+            if " from" in fields_str.lower():
+                fields_str = fields_str[:fields_str.lower().find(" from")-2]
+            return [s.strip() for s in fields_str.split(",")]
+
+        
 
     @query.setter
     def query(self, value: str):

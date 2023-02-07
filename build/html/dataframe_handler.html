@@ -51,6 +51,7 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest_server_deduplication.html">REST API Deduplication Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="connectors.html">Connectors</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="handlers.html">Handlers</a><ul class="current">
@@ -138,12 +139,22 @@
 <span id="dataframe-handler-module"></span><h1>dataframe_handler module<a class="headerlink" href="#module-dataframe_handler" title="Permalink to this headline">¶</a></h1>
 <p>Dataframe handlers return the dataframe of the connector</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="dataframe_handler.DataframeHandler">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dataframe_handler.</span></span><span class="sig-name descname"><span class="pre">DataframeHandler</span></span><a class="headerlink" href="#dataframe_handler.DataframeHandler" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dataframe_handler.DataFrameHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dataframe_handler.</span></span><span class="sig-name descname"><span class="pre">DataFrameHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df:</span> <span class="pre">pandas.core.frame.DataFrame</span> <span class="pre">=</span> <span class="pre">Empty</span> <span class="pre">DataFrame</span> <span class="pre">Columns:</span> <span class="pre">[]</span> <span class="pre">Index:</span> <span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dataframe_handler.DataFrameHandler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">libs.handler.base_handler.BaseHandler</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="dataframe_handler.DataframeHandler.execute">
-<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#dataframe_handler.DataframeHandler.execute" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dataframe_handler.DataFrameHandler.columns">
+<span class="sig-name descname"><span class="pre">columns</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dataframe_handler.DataFrameHandler.columns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="dataframe_handler.DataFrameHandler.df">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">df</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">pandas.core.frame.DataFrame</span></em><a class="headerlink" href="#dataframe_handler.DataFrameHandler.df" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dataframe_handler.DataFrameHandler.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#dataframe_handler.DataFrameHandler.execute" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -161,6 +172,7 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest_server_deduplication.html">REST API Deduplication Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="connectors.html">Connectors</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="handlers.html">Handlers</a><ul class="current">

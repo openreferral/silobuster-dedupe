@@ -51,6 +51,7 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest_server_deduplication.html">REST API Deduplication Endpoints</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="helpers.html">Helper Libraries</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="base_iterator.html">base_iterator module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">singleton module</a></li>
@@ -144,6 +145,8 @@
 type(MyObject, bases, args) ..</p>
 <p>Here a metaclass returns the instance that has already been created. This method is preferred over the “new”
 dunder method returning the instance. In that method, properties do not behave correctly.</p>
+<p>The __init__ method creates an _instance attribute and sets it equal to None. The __call__ method checks if the _instance attribute exists. If it does, it returns that instance. If the _instance
+attribute does not exist, it instantiates the class using the super() method and sets that instance equal to the _instance class attribute.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="singleton.SingletonMeta">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">singleton.</span></span><span class="sig-name descname"><span class="pre">SingletonMeta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bases</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attrs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#singleton.SingletonMeta" title="Permalink to this definition">¶</a></dt>
@@ -163,6 +166,7 @@ dunder method returning the instance. In that method, properties do not behave c
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest_server_deduplication.html">REST API Deduplication Endpoints</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="helpers.html">Helper Libraries</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="base_iterator.html">base_iterator module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">singleton module</a></li>

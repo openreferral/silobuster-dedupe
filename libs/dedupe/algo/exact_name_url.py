@@ -1,3 +1,6 @@
+'''
+Deduplicates HSDS3 formatted name and urls using exact matching urls and names.
+'''
 import pandas as pd
 
 
@@ -23,7 +26,7 @@ def create_index(url: str, name: str):
     return url + name
 
 
-def exact_name_url(df: pd.DataFrame):
+def deduplicate_exact_match_name_url(df: pd.DataFrame):
     
     df.fillna("",inplace=True)
     df['key'] = df.apply(lambda row: create_index(row['website'], row['name']), axis = 1)

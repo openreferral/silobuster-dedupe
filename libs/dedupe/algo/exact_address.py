@@ -1,3 +1,7 @@
+'''
+Deduplicates HSDS3 formatted addresses using exact matching on name, address_1, address_2, city, state_province, and postal_code
+'''
+
 import pandas as pd
 import pandas_dedupe
 
@@ -24,7 +28,7 @@ def split_addresses(addr1: str, addr2: str=""):
 
 
 
-def exact_address(df: pd.DataFrame):
+def deduplicate_exact_match_address(df: pd.DataFrame):
     df.fillna("",inplace=True)
     df['key'] = df.apply(lambda row: str(row['name']).lower().replace(' ', '') + str(row['address_1']).lower().replace(' ', '') + str(row['address_2']).lower().replace(' ', '') + str(row['city']).lower().replace(' ', '') + str(row['state_province']).lower().replace(' ', '') + str(row['address_2']).lower()[:5], axis = 1)
     duplicates = pd.DataFrame(columns=[*df.columns, "original_organization_id", "original_name", "original_address_1", "original_address_2", "original_city", "original_city", "original_state_province", "original_postal_code"])    

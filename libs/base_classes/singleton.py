@@ -12,6 +12,8 @@ type(MyObject, bases, args) ..
 Here a metaclass returns the instance that has already been created. This method is preferred over the "new"
 dunder method returning the instance. In that method, properties do not behave correctly.
 
+The __init__ method creates an _instance attribute and sets it equal to None. The __call__ method checks if the _instance attribute exists. If it does, it returns that instance. If the _instance
+attribute does not exist, it instantiates the class using the super() method and sets that instance equal to the _instance class attribute.
 """
 
 class SingletonMeta(type):

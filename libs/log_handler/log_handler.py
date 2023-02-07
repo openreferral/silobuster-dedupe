@@ -38,7 +38,7 @@ class LOG_DESTINATION:
 class LogHandler(metaclass=SingletonMeta):
 
     insert_query = ''
-    def __init__(self, default_destination: LOG_DESTINATION='db', db_handler: BaseDBHandler=None):
+    def __init__(self, default_destination: LOG_DESTINATION='db', db_handler: BaseDBHandler=None, REGISTERED_STEPS: dict=dict()):
         self.__db_handler = db_handler
 
         
@@ -159,16 +159,30 @@ class LogHandler(metaclass=SingletonMeta):
 
     def get(self, **kwargs) -> dict:
 
+        
         # Check kwargs
         valid_params = False
         results = dict()
-
+        
         if kwargs.get('id'):
             valid_params = True
-            results = self.db_handler.execute(self.retrieve_query + f' WHERE id = %s', [kwargs["id"]])
+            if isinstance(kwargs['id'], list):
+                id = kwargs['id'][0]
+            else:
+                id = kwargs['id']
+            results = self.db_handler.execute(self.retrieve_query + f' WHERE id = %s', [id])
         elif kwargs.get('job_id') and kwargs.get('step_name'):
             valid_params = True
-            results = self.db_handler.execute(self.retrieve_query + f' WHERE job_id = %s AND step_name = %s', [kwargs["job_id"], kwargs["step_name"]])
+            if isinstance(kwargs.get('job_id'), list):
+                job_id = kwargs['job_id'][0]
+            else:
+                job_id = kwargs['job_id']
+            if isinstance(kwargs['step_name'], list):
+                step_name = kwargs['step_name'][0]
+            else:
+                step_name = kwargs['step_name']
+
+            results = self.db_handler.execute(self.retrieve_query + f' WHERE job_id = %s AND step_name = %s', [job_id, step_name])
         
 
         if not valid_params:
@@ -194,7 +208,6 @@ class LogHandler(metaclass=SingletonMeta):
         writer = pd.ExcelWriter(f'log_report_{record["id"]}_{record["step_name"]}.xlsx', engine='xlsxwriter')
         for key in record['log_message'].keys():
             df = pd.DataFrame.from_dict(record['log_message'][key])
-            print (key)
             
             df.to_excel(writer, sheet_name=f'{key}')
         

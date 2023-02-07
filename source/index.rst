@@ -13,6 +13,7 @@ Welcome to Silobuster Dedupe's documentation!
    :caption: Contents:
 
    rest_server
+   rest_server_deduplication
    helpers
    connectors
    handlers

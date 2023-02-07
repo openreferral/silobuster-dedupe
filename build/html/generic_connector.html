@@ -51,6 +51,7 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest_server_deduplication.html">REST API Deduplication Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="connectors.html">Connectors</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="base_connector.html">base_connector module</a></li>
@@ -140,26 +141,64 @@
 handles the results by executing the output handler’s execute action.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="generic_connector.GenericConnecter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">generic_connector.</span></span><span class="sig-name descname"><span class="pre">GenericConnecter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.base_handler.BaseHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.base_handler.BaseHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.base_handler.BaseHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_logs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generic_connector.GenericConnecter" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">generic_connector.</span></span><span class="sig-name descname"><span class="pre">GenericConnecter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.base_handler.BaseHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.base_handler.BaseHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.base_handler.BaseHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_logs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jsonify</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">STEPS</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generic_connector.GenericConnecter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">libs.connector.base_connector.BaseConnector</span></code></p>
 <dl class="py property">
 <dt class="sig sig-object py" id="generic_connector.GenericConnecter.df">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">df</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">pandas.core.frame.DataFrame</span></em><a class="headerlink" href="#generic_connector.GenericConnecter.df" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="generic_connector.GenericConnecter.input_handler">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input_handler</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">object</span></em><a class="headerlink" href="#generic_connector.GenericConnecter.input_handler" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="generic_connector.GenericConnecter.enrich">
+<span class="sig-name descname"><span class="pre">enrich</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.base_handler.BaseHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generic_connector.GenericConnecter.enrich" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accepts a handler, a left column (and existing column from the df attribute), and a right column (existing 
+column from the df argument). Extends the df attribute with the df argument using a left join.</p>
+<p>The handler is appended to the __input_handlers instance attribute. Whenever “refresh” is called, the handlers read their data source and recreate the DataFrame.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generic_connector.GenericConnecter.get_input_handler">
+<span class="sig-name descname"><span class="pre">get_input_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">libs.handler.base_handler.BaseHandler</span></span></span><a class="headerlink" href="#generic_connector.GenericConnecter.get_input_handler" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
+<dt class="sig sig-object py" id="generic_connector.GenericConnecter.input_columns">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input_columns</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#generic_connector.GenericConnecter.input_columns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="generic_connector.GenericConnecter.input_handler">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">input_handler</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">libs.handler.base_handler.BaseHandler</span></em><a class="headerlink" href="#generic_connector.GenericConnecter.input_handler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generic_connector.GenericConnecter.join">
+<span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.base_handler.BaseHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">join_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'left'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generic_connector.GenericConnecter.join" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accepts a dataframe, a left column (and existing column from the df attribute), a right column (existing 
+column from the df argument), and a join type. Joins the df attribute with the new table.</p>
+</dd></dl>
+
+<dl class="py property">
 <dt class="sig sig-object py" id="generic_connector.GenericConnecter.log_handler">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">log_handler</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">object</span></em><a class="headerlink" href="#generic_connector.GenericConnecter.log_handler" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">log_handler</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">libs.log_handler.log_handler.LogHandler</span></em><a class="headerlink" href="#generic_connector.GenericConnecter.log_handler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generic_connector.GenericConnecter.mutate">
+<span class="sig-name descname"><span class="pre">mutate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">funcs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generic_connector.GenericConnecter.mutate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accepts a number of functions that mutate a dataframe and returns a dictionary. The return dictionary must have a 
+key of results and all keys in the dictionary must be arrays of records. Each function mutates the df attribute and the 
+logger logs each of the steps.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="generic_connector.GenericConnecter.output_columns">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_columns</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#generic_connector.GenericConnecter.output_columns" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="generic_connector.GenericConnecter.output_handler">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_handler</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">object</span></em><a class="headerlink" href="#generic_connector.GenericConnecter.output_handler" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">output_handler</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">libs.handler.base_handler.BaseHandler</span></em><a class="headerlink" href="#generic_connector.GenericConnecter.output_handler" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -168,8 +207,30 @@ handles the results by executing the output handler’s execute action.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="generic_connector.GenericConnecter.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generic_connector.GenericConnecter.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls the Handler’s “execute” method and loads it into a dataframe.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generic_connector.GenericConnecter.reduce">
+<span class="sig-name descname"><span class="pre">reduce</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generic_connector.GenericConnecter.reduce" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accepts a dataframe, a left column (and existing column from the df attribute), a right column (existing 
+column from the df argument), and a join type. Joins the df attribute with the new table.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="generic_connector.GenericConnecter.transform">
-<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">funcs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generic_connector.GenericConnecter.transform" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.base_handler.BaseHandler</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">funcs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#generic_connector.GenericConnecter.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accepts a handler and a number of functions that mutate a dataframe using another dataframe and returns a dictionary. The return dictionary must have a 
+key of results and all keys in the dictionary must be arrays of records. Each function mutates the df attribute and the 
+logger logs each of the steps.</p>
+<p>Handlers of transform type do not take action on “refresh”.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="generic_connector.GenericConnecter.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#generic_connector.GenericConnecter.write" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -192,6 +253,7 @@ handles the results by executing the output handler’s execute action.</p>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest_server_deduplication.html">REST API Deduplication Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="connectors.html">Connectors</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="base_connector.html">base_connector module</a></li>

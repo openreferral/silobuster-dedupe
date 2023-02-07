@@ -17,3 +17,7 @@ class JsonHandler(BaseHandler):
         The JsonHandler does not take any action on execute.
         '''
         pass
+
+    @property
+    def columns(self):
+        pass

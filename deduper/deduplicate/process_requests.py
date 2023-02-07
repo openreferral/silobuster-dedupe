@@ -1,3 +1,5 @@
+import json
+
 from settings import DEDUPLICATION_STEPS, app_logger
 
 from libs.handler.postgres_handler import PostgresHandler
@@ -54,22 +56,25 @@ def ProcessDbToDb(data: dict):
         write_logs=write_logs
     )
     
-    steps = DEDUPLICATION_STEPS
+    # steps = DEDUPLICATION_STEPS
+    steps = dict()
     
     if data.get('steps'):
-        for step in data.get('steps'):
+        for step in data.getlist('steps'):
             if DEDUPLICATION_STEPS.get(step):
                 steps[step] = DEDUPLICATION_STEPS[step]
 
-        steps = data.get('steps')
-                    
-    try:
-        job_id = connector.transform(connector.parse_steps(steps))
-    except Exception as e:
-        return {
-            'status': 'error',
-            'message': 'Error in transforming data'
-        }
+    # steps = data.get('steps')
+    #try:
+    job_id = connector.mutate(connector.parse_steps(steps))
+    if not data.get('dry_run'):
+        connector.write()
+
+    #except Exception as e:
+    #    return {
+    #        'status': 'error',
+    #        'message': f'Error in transforming data {e}'
+    #    }
 
     return {
         'status': 'success',

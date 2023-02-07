@@ -12,7 +12,7 @@ from libs.handler.postgres_handler import PostgresHandler
 from libs.connector.postgres_connector import PostgresToPostgresConnector
 from libs.dataframes.to_types import to_list_of_dicts
 
-from . import ProcessDbToDb
+from .process_requests import ProcessDbToDb
 
 
 
@@ -25,9 +25,7 @@ class Options(APIView):
         })
 
     
-
-class DatabaseToDatabase(APIView):
-
+class Instructions(APIView):
     def get(self, request):
         data = dict()
         instructions = {
@@ -40,9 +38,13 @@ class DatabaseToDatabase(APIView):
             'destination': 'Pass all destination parameters to write final results to your database. Paramaters are (destination_host, destination_db, destination_port, destination_username, destination_password, destination_query)',
             'env_source_prefix': 'The server will attempt to retrieve the source settings from the environment using the specified prefix',
             'env_destination_prefix': 'The server will attempt to retrieve the destination settings from the environment using the specified prefix',
-            'steps': 'The server will transform the data using the steps provided in the order they are received. If this parameter is not supplied, all steps will be performed. The format for steps should be a list of function names. See available steps',
-            'available_steps': DEDUPLICATION_STEPS.keys()
+            'url_format': 'job/input/output.',
+            'available_inputs': 'postgres',
+            'available_outputs': 'postgres, json, excel',
+            'available_jobs': 'dedupe_urls, dedupe_organization_identifiers, dedupe_addresses',
+            'dry_run': 'Boolean value that specifies whether a write of the results will be performed. If it is set to True, then only a log will be written.'
         }
+
         data['instructions'] = instructions
 
         return Response({
@@ -51,10 +53,12 @@ class DatabaseToDatabase(APIView):
         })
 
 
-    def post(self, request):
-        
-        data = request.data
+class DatabaseToDatabase(APIView):    
+    
+    #  job: dict={ 'exact_name_url': 'deduplicate_exact_match_name_url' }
 
+    def post(self, request):
+        data = request.data
         return Response(ProcessDbToDb(data))
 
 

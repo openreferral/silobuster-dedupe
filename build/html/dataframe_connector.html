@@ -51,6 +51,7 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest_server_deduplication.html">REST API Deduplication Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="connectors.html">Connectors</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="base_connector.html">base_connector module</a></li>
@@ -137,18 +138,31 @@
 <span id="dataframe-connector-module"></span><h1>dataframe_connector module<a class="headerlink" href="#module-dataframe_connector" title="Permalink to this headline">¶</a></h1>
 <p>Connectors of type “Dataframe” either accept input or they output to a Pandas DataFrame. These connectors are used in chaining multiple connectors together to perform complex operations.</p>
 <dl class="py class">
-<dt class="sig sig-object py" id="dataframe_connector.DataframeToDataframeConnector">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dataframe_connector.</span></span><span class="sig-name descname"><span class="pre">DataframeToDataframeConnector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dataframe_connector.DataframeToDataframeConnector" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dt class="sig sig-object py" id="dataframe_connector.DataFrameToDataFrameConnector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dataframe_connector.</span></span><span class="sig-name descname"><span class="pre">DataFrameToDataFrameConnector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.dataframe_handler.DataFrameHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.postgres_handler.PostgresHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.log_handler.log_handler.LogHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_logs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dataframe_connector.DataFrameToDataFrameConnector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">libs.connector.generic_connector.GenericConnecter</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="dataframe_connector.DataframeToDataframeConnector.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dataframe_connector.DataframeToDataframeConnector.read" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="dataframe_connector.DataFrameToDataFrameConnector.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dataframe_connector.DataFrameToDataFrameConnector.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls the Handler’s “execute” method and loads it into a dataframe.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="dataframe_connector.DataframeToDataframeConnector.write">
-<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dataframe_connector.DataframeToDataframeConnector.write" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="dataframe_connector.DataFrameToDataFrameConnector.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dataframe_connector.DataFrameToDataFrameConnector.write" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="dataframe_connector.DataFrameToPostgresConnector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dataframe_connector.</span></span><span class="sig-name descname"><span class="pre">DataFrameToPostgresConnector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.dataframe_handler.DataFrameHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.handler.postgres_handler.PostgresHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_handler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">libs.log_handler.log_handler.LogHandler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_logs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dataframe_connector.DataFrameToPostgresConnector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">libs.connector.generic_connector.GenericConnecter</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="dataframe_connector.DataFrameToPostgresConnector.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dataframe_connector.DataFrameToPostgresConnector.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls the Handler’s “execute” method and loads it into a dataframe.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -165,6 +179,7 @@
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest_server_deduplication.html">REST API Deduplication Endpoints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="connectors.html">Connectors</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="base_connector.html">base_connector module</a></li>

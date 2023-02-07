@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>REST API Deduplication Endpoints &#8212; Silobuster Dedupe 1.0.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pydoctheme.css?2022.1" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Helper Libraries" href="helpers.html" />
+    <link rel="prev" title="REST API" href="rest_server.html" /><link rel="shortcut icon" type="image/png" href="_static/py.svg" />
+            <script type="text/javascript" src="_static/copybutton.js"></script>
+            <script type="text/javascript" src="_static/menu.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <label for="menuToggler" class="toggler__label">
+        <span></span>
+    </label>
+    <nav class="nav-content" role="navigation">
+         <a href="https://www.python.org/" class="nav-logo">
+             <img src="_static/py.svg" alt="Logo"/>
+         </a>
+        <div class="version_switcher_placeholder"></div>
+        <form role="search" class="search" action="search.html" method="get">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                <path fill-rule="nonzero"
+                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
+            </svg>
+            <input type="text" name="q" aria-label="Quick search"/>
+            <input type="submit" value="Go"/>
+        </form>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+<h3><a href="index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">REST API Deduplication Endpoints</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#exact-match-name-url-example">Exact Match Name Url Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#postgres-to-postgres">Postgres to Postgres</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connectors.html">Connectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handlers.html">Handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rest_server.html"
+                        title="previous chapter">REST API</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="helpers.html"
+                        title="next chapter">Helper Libraries</a></p>
+        </nav>
+    </div>
+</div>
+  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="helpers.html" title="Helper Libraries"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rest_server.html" title="REST API"
+             accesskey="P">previous</a> |</li>
+          <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="index.html">Silobuster Dedupe 1.0.0 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">REST API Deduplication Endpoints</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+                     |
+                </li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="rest-api-deduplication-endpoints">
+<h1>REST API Deduplication Endpoints<a class="headerlink" href="#rest-api-deduplication-endpoints" title="Permalink to this headline">¶</a></h1>
+<p>The deduplication endpoints serve as a means to manually deduplication datasets and write the results to some output. The format for the urls is “deduplication/input/output”. The end results are
+delivered through the output format. Logs on these steps can then be viewed at the “logs” endpoint.</p>
+<section id="exact-match-name-url-example">
+<h2>Exact Match Name Url Example<a class="headerlink" href="#exact-match-name-url-example" title="Permalink to this headline">¶</a></h2>
+<section id="postgres-to-postgres">
+<h3>Postgres to Postgres<a class="headerlink" href="#postgres-to-postgres" title="Permalink to this headline">¶</a></h3>
+<p>rest endpoint: “<a class="reference external" href="http://127.0.0.1:8000/deduplicate/database/database">http://127.0.0.1:8000/deduplicate/database/database</a>”</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="p">{</span>
+    <span class="nx">source_query</span><span class="o">:</span> <span class="s2">&quot;SELECT o.id as organization_id, o.name as name, o.url as url, a.address_1 as address1, a.address_2 as address2, a.city, a.state_province as state, a.postal_code as zip \</span>
+<span class="s2">                    FROM organization o JOIN location l on l.organization_id = o.id \</span>
+<span class="s2">                    JOIN address a on a.location_id = l.id WHERE type = &#39;physical&#39;&quot;</span><span class="p">,</span>
+    <span class="nx">destination_query</span><span class="o">:</span> <span class="s2">&quot;INSERT INTO urls_deduped (organization_id, name, url, address_1, address_2, city, state, zip) VALUES (%s, $s, %s, %s, %s, %s, %s, %s)&quot;</span><span class="p">,</span>
+
+<span class="p">}</span>
+
+<span class="c1">// Response</span>
+<span class="p">{</span>
+   <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;Results delivered to db&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;payload&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;job_id&quot;</span><span class="o">:</span> <span class="s2">&quot;8332f2cb-b275-4ed0-966f-693fd73d5f21&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This will connect to the default environment settings with the prefix of “POSTGRES”:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">POSTGRES_USERNAME</span><span class="o">=</span><span class="s1">&#39;MY_USER&#39;</span>
+<span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span><span class="s1">&#39;MY_PASS&#39;</span>
+<span class="nv">POSTGRES_DB</span><span class="o">=</span><span class="s1">&#39;MY_DB&#39;</span>
+<span class="nv">POSTGRES_HOST</span><span class="o">=</span><span class="s1">&#39;MY_HOST&#39;</span>
+<span class="nv">POSTGRES_PORT</span><span class="o">=</span><span class="s1">&#39;25060&#39;</span>
+</pre></div>
+</div>
+<p>And perform a deduplication of organization names to urls. The results are written to another table.</p>
+<p>To connect to another database instance:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="p">{</span>
+    <span class="nx">source_host</span><span class="o">:</span> <span class="s2">&quot;my_cluster_host&quot;</span><span class="p">,</span>
+    <span class="nx">source_db</span><span class="o">:</span> <span class="s2">&quot;my_db&quot;</span><span class="p">,</span>
+    <span class="nx">source_username</span><span class="o">:</span> <span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+    <span class="nx">source_password</span><span class="o">:</span> <span class="s2">&quot;rossum&quot;</span><span class="p">,</span>
+    <span class="nx">source_schema</span><span class="o">:</span> <span class="s2">&quot;private_data&quot;</span><span class="p">,</span>
+    <span class="nx">source_query</span><span class="o">:</span> <span class="s2">&quot;SELECT o.id as organization_id, o.name as name, o.url as url, a.address_1 as address1, a.address_2 as address2, a.city, a.state_province as state, a.postal_code as zip \</span>
+<span class="s2">                    FROM organization o JOIN location l on l.organization_id = o.id \</span>
+<span class="s2">                    JOIN address a on a.location_id = l.id WHERE type = &#39;physical&#39;&quot;</span><span class="p">,</span>
+    <span class="nx">destination_host</span><span class="o">:</span> <span class="s2">&quot;my_cluster_host&quot;</span><span class="p">,</span>
+    <span class="nx">destination_db</span><span class="o">:</span> <span class="s2">&quot;my_dedupes_db&quot;</span><span class="p">,</span>
+    <span class="nx">destination_username</span><span class="o">:</span> <span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+    <span class="nx">destination_password</span><span class="o">:</span> <span class="s2">&quot;guidovan&quot;</span><span class="p">,</span>
+    <span class="nx">destination_schema</span><span class="o">:</span> <span class="s2">&quot;public_data&quot;</span><span class="p">,</span>
+    <span class="nx">destination_query</span><span class="o">:</span> <span class="s2">&quot;INSERT INTO urls_deduped (organization_id, name, url, address_1, address_2, city, state, zip) VALUES (%s, $s, %s, %s, %s, %s, %s, %s)&quot;</span><span class="p">,</span>
+
+<span class="p">}</span>
+
+<span class="c1">// Response</span>
+<span class="p">{</span>
+   <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;Results delivered to db&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;payload&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;job_id&quot;</span><span class="o">:</span> <span class="s2">&quot;21e15641-ad3d-42ac-83e1-2df8a90d0e4c&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The important piece of data in the return is the job id. To view the log of what our dedupe function did, we can go to the logs endpoint and retrieve those results.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rest_server.html">REST API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">REST API Deduplication Endpoints</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#exact-match-name-url-example">Exact Match Name Url Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#postgres-to-postgres">Postgres to Postgres</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="helpers.html">Helper Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connectors.html">Connectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="handlers.html">Handlers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rest_server.html"
+                        title="previous chapter">REST API</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="helpers.html"
+                        title="next chapter">Helper Libraries</a></p>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="helpers.html" title="Helper Libraries"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="rest_server.html" title="REST API"
+             >previous</a> |</li>
+          <li><img src="_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="index.html">Silobuster Dedupe 1.0.0 documentation</a> &#187;
+              
+          </li>
+        <li class="nav-item nav-item-this"><a href="">REST API Deduplication Endpoints</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+                     |
+                </li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2023, Silobuster Dedupe.
+    <br />
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br />
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br />
+    
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Last updated on None.
+    
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    </div>
+
+  </body>
+</html>

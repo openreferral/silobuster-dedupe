@@ -8,6 +8,11 @@ By inheriting this class, polymorphism is ensured amongst all connectors so that
 
 from abc import ABC, abstractmethod
 
+from libs.handler.base_handler import BaseHandler
+from libs.log_handler.log_handler import LogHandler
+
+import pandas as pd
+
 
 class BaseConnector(ABC):
 
@@ -18,32 +23,36 @@ class BaseConnector(ABC):
 
     @property
     @abstractmethod
-    def input_handler(self):
+    def input_handler(self) -> BaseHandler:
+        pass
+
+    @abstractmethod
+    def get_input_handler(self, index: int) -> BaseHandler:
+        pass
+    
+    @property
+    @abstractmethod
+    def output_handler(self) -> BaseHandler:
         pass
 
     @property
     @abstractmethod
-    def output_handler(self):
+    def log_handler(self) -> LogHandler:
         pass
 
     @property
     @abstractmethod
-    def log_handler(self):
+    def input_columns(self) -> list:
         pass
 
     @property
     @abstractmethod
-    def write_logs(self):
+    def output_columns(self) -> list:
         pass
 
     @property
     @abstractmethod
-    def input_fields(self):
-        pass
-
-    @property
-    @abstractmethod
-    def output_fields(self):
+    def write_logs(self) -> bool:
         pass
 
     @abstractmethod
@@ -59,10 +68,24 @@ class BaseConnector(ABC):
         pass
 
     @abstractmethod
-    def transform(self):
+    def transform(self, df: pd.DataFrame):
         pass
 
+    @abstractmethod
+    def enrich(self, df: pd.DataFrame, left_column: str, right_column: str):
+        pass
 
+    @abstractmethod
+    def join(self, df: pd.DataFrame, left_column: str, right_column: str, join: str="left"):
+        pass
+
+    @abstractmethod
+    def reduce(self):
+        pass
+
+    @abstractmethod
+    def mutate(self, *funcs):
+        pass
     
 
 class BaseDbConnector(BaseConnector):

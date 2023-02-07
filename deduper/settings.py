@@ -141,7 +141,8 @@ The app_logger is a singleton class.
 '''
 
 DEDUPLICATION_STEPS = {
-    'dedupe_names_orgs': 'libs.dedupe.ml.names_orgs.names_orgs'
+    'dedupe_io_names_addresses': 'libs.dedupe.ml.names_addresses.names_addresses',
+    'deduplicate_exact_match_name_url': 'libs.dedupe.algo.exact_name_url',
 }
 
 app_logger = LogHandler(db_handler=PostgresHandler(env_prefix='POSTGRES'))

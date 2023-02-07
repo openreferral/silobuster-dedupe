@@ -28,18 +28,7 @@ class PostgresToPostgresConnector(GenericConnecter):
         super().__init__(input_handler=input_handler, output_handler=output_handler, log_handler=log_handler, write_logs=write_logs)        
         self.read()
 
-
-    @property
-    def input_fields(self) -> list:
-        return list(self.df.columns)
-
-
-    @property
-    def output_fields(self) -> list:
-        s = self.output_handler.query
-        fields = s[s.find("(")+1:s.find(")")]
-        return [s.strip() for s in fields.split(',')]
-
+    
 
     def read(self):
         data_df = pd.DataFrame.from_records(self.input_handler.execute(self.input_handler.query))
@@ -66,21 +55,6 @@ class PostgresToJsonConnector(GenericConnecter):
         self.read()
 
 
-    @property
-    def input_fields(self):
-        '''
-        Returns the columns (fields) of the Input Handler's query columns
-        '''
-        return list(self.df.columns)
-
-
-    @property
-    def output_fields(self):
-        '''
-        Returns the columns (fields) of the Out Handler's query columns
-        '''
-        return list(self.df.columns)
-
     
     def read(self):
         '''
@@ -88,6 +62,7 @@ class PostgresToJsonConnector(GenericConnecter):
         '''
         data_df = pd.DataFrame.from_records(self.input_handler.execute(self.input_handler.query))
         self.df = data_df
+
 
     
     def write(self):
@@ -117,16 +92,6 @@ class PostgresToDataFrameConnector(GenericConnecter):
         self.read()
 
 
-    @property
-    def input_fields(self):
-        return list(self.df.columns)
-
-
-    @property
-    def output_fields(self):
-        return list(self.df.columns)
-
-    
     def read(self):
         data_df = pd.DataFrame.from_records(self.input_handler.execute(self.input_handler.query))
         self.df = data_df
