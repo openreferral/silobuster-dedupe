@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>REST API Deduplication Endpoints &#8212; Silobuster Dedupe 1.0.0 documentation</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pydoctheme.css?2022.1" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="REST API Logs" href="rest_server_logs.html" />
+    <link rel="prev" title="REST API Getting Started" href="rest_server.html" /><link rel="shortcut icon" type="image/png" href="../_static/py.svg" />
+            <script type="text/javascript" src="../_static/copybutton.js"></script>
+            <script type="text/javascript" src="../_static/menu.js"></script> 
+  </head>
+<body>
+<div class="mobile-nav">
+    <input type="checkbox" id="menuToggler" class="toggler__input" aria-controls="navigation"
+           aria-pressed="false" aria-expanded="false" role="button" aria-label="Menu" />
+    <label for="menuToggler" class="toggler__label">
+        <span></span>
+    </label>
+    <nav class="nav-content" role="navigation">
+         <a href="https://www.python.org/" class="nav-logo">
+             <img src="../_static/py.svg" alt="Logo"/>
+         </a>
+        <div class="version_switcher_placeholder"></div>
+        <form role="search" class="search" action="../search.html" method="get">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="search-icon">
+                <path fill-rule="nonzero"
+                        d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 001.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 00-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 005.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#444"></path>
+            </svg>
+            <input type="text" name="q" aria-label="Quick search"/>
+            <input type="submit" value="Go"/>
+        </form>
+    </nav>
+    <div class="menu-wrapper">
+        <nav class="menu" role="navigation" aria-label="main navigation">
+            <div class="language_switcher_placeholder"></div>
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../core/core_index.html">Core library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/core_index.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rest_index.html">REST API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="rest_server.html">REST API Getting Started</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">REST API Deduplication Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exact-match-name-url-example">Exact Match Name Url Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rest_server_logs.html">REST API Logs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rest_index.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rest_server.html"
+                        title="previous chapter">REST API Getting Started</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="rest_server_logs.html"
+                        title="next chapter">REST API Logs</a></p>
+        </nav>
+    </div>
+</div>
+  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="rest_server_logs.html" title="REST API Logs"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rest_server.html" title="REST API Getting Started"
+             accesskey="P">previous</a> |</li>
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">Silobuster Dedupe 1.0.0 documentation</a> &#187;
+              
+          </li>
+          <li class="nav-item nav-item-1"><a href="rest_index.html" accesskey="U">REST API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">REST API Deduplication Endpoints</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+                     |
+                </li>
+            
+      </ul>
+    </div>    
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="rest-api-deduplication-endpoints">
+<h1>REST API Deduplication Endpoints<a class="headerlink" href="#rest-api-deduplication-endpoints" title="Permalink to this headline">¶</a></h1>
+<p>The deduplication endpoints serve as a means to manually deduplication datasets and write the results to some output. The format for the urls is “deduplication/input/output”. The end results are
+delivered through the output format. Logs on these steps can then be viewed at the “logs” endpoint.</p>
+<section id="exact-match-name-url-example">
+<h2>Exact Match Name Url Example<a class="headerlink" href="#exact-match-name-url-example" title="Permalink to this headline">¶</a></h2>
+<p>The exact match algorithm matches organizations and websites. Websites are lower cased and the protocol and “www” is removed. The algorithm expects two columns:</p>
+<ol class="arabic simple">
+<li><p>website</p></li>
+<li><p>name</p></li>
+</ol>
+<p>Any additional column is passed through. So, if several algorithms are chained together, then the columns passed to this algorithm will be “passed through” to the next algorithm. for example,
+we can pass an array for steps:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="s2">&quot;deduplicate_exact_match_name_url&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;deduplicate_exact_match_address&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>The “deduplicate_exact_match_address” needs columns related to addresses, such as address_1 and city. So, we pass those columns to the query. Once the “deduplicate_exact_match_name_url” has been executed, those additional columns
+are then available to the “deduplicate_exact_match_address”.</p>
+<section id="postgres-to-postgres">
+<h3>Postgres to Postgres<a class="headerlink" href="#postgres-to-postgres" title="Permalink to this headline">¶</a></h3>
+<p>rest endpoint: “<a class="reference external" href="http://127.0.0.1:8000/deduplicate/database/database">http://127.0.0.1:8000/deduplicate/database/database</a>”</p>
+<section id="default-deduplication-example">
+<h4>Default Deduplication Example<a class="headerlink" href="#default-deduplication-example" title="Permalink to this headline">¶</a></h4>
+<p>The REST API server is configured to run a series of deduplication steps (see <a class="reference internal" href="rest_server.html#rest-server-configuration"><span class="std std-ref">Server Configuration</span></a>).</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="p">{</span>
+    <span class="nx">source_query</span><span class="o">:</span> <span class="s2">&quot;SELECT o.id as organization_id, o.name as name, o.url as url, a.address_1 as address1, a.address_2 as address2, a.city, a.state_province as state, a.postal_code as zip \</span>
+<span class="s2">                    FROM organization o JOIN location l on l.organization_id = o.id \</span>
+<span class="s2">                    JOIN address a on a.location_id = l.id WHERE type = &#39;physical&#39;&quot;</span><span class="p">,</span>
+    <span class="nx">destination_query</span><span class="o">:</span> <span class="s2">&quot;INSERT INTO urls_deduped (organization_id, name, url, address_1, address_2, city, state, zip) VALUES (%s, $s, %s, %s, %s, %s, %s, %s)&quot;</span><span class="p">,</span>
+
+<span class="p">}</span>
+
+<span class="c1">// Response</span>
+<span class="p">{</span>
+   <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;Results delivered to db&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;payload&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;job_id&quot;</span><span class="o">:</span> <span class="s2">&quot;8332f2cb-b275-4ed0-966f-693fd73d5f21&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Your actual job_id will be unique and not the same as in the examples.</p>
+</div>
+<p>This will connect to the default environment settings with the prefix of “POSTGRES”:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">POSTGRES_USERNAME</span><span class="o">=</span><span class="s1">&#39;MY_USER&#39;</span>
+<span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span><span class="s1">&#39;MY_PASS&#39;</span>
+<span class="nv">POSTGRES_DB</span><span class="o">=</span><span class="s1">&#39;MY_DB&#39;</span>
+<span class="nv">POSTGRES_HOST</span><span class="o">=</span><span class="s1">&#39;MY_HOST&#39;</span>
+<span class="nv">POSTGRES_PORT</span><span class="o">=</span><span class="s1">&#39;25060&#39;</span>
+</pre></div>
+</div>
+<p>And perform a deduplication of the steps defined in the dict, DEDUPLICATION_STEPS. The results are written to the destination_query.</p>
+<p>You can specify custom database settings.</p>
+</section>
+<section id="custom-database-settings-deduplication-example">
+<h4>Custom Database Settings Deduplication Example<a class="headerlink" href="#custom-database-settings-deduplication-example" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="p">{</span>
+    <span class="nx">source_host</span><span class="o">:</span> <span class="s2">&quot;my_cluster_host&quot;</span><span class="p">,</span>
+    <span class="nx">source_db</span><span class="o">:</span> <span class="s2">&quot;my_db&quot;</span><span class="p">,</span>
+    <span class="nx">source_username</span><span class="o">:</span> <span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+    <span class="nx">source_password</span><span class="o">:</span> <span class="s2">&quot;rossum&quot;</span><span class="p">,</span>
+    <span class="nx">source_schema</span><span class="o">:</span> <span class="s2">&quot;private_data&quot;</span><span class="p">,</span>
+    <span class="nx">source_query</span><span class="o">:</span> <span class="s2">&quot;SELECT o.id as organization_id, o.name as name, o.url as url, a.address_1 as address1, a.address_2 as address2, a.city, a.state_province as state, a.postal_code as zip \</span>
+<span class="s2">                    FROM organization o JOIN location l on l.organization_id = o.id \</span>
+<span class="s2">                    JOIN address a on a.location_id = l.id WHERE type = &#39;physical&#39;&quot;</span><span class="p">,</span>
+    <span class="nx">destination_host</span><span class="o">:</span> <span class="s2">&quot;my_cluster_host&quot;</span><span class="p">,</span>
+    <span class="nx">destination_db</span><span class="o">:</span> <span class="s2">&quot;my_dedupes_db&quot;</span><span class="p">,</span>
+    <span class="nx">destination_username</span><span class="o">:</span> <span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+    <span class="nx">destination_password</span><span class="o">:</span> <span class="s2">&quot;guidovan&quot;</span><span class="p">,</span>
+    <span class="nx">destination_schema</span><span class="o">:</span> <span class="s2">&quot;public_data&quot;</span><span class="p">,</span>
+    <span class="nx">destination_query</span><span class="o">:</span> <span class="s2">&quot;INSERT INTO urls_deduped (organization_id, name, url, address_1, address_2, city, state, zip) VALUES (%s, $s, %s, %s, %s, %s, %s, %s)&quot;</span><span class="p">,</span>
+
+<span class="p">}</span>
+
+<span class="c1">// Response</span>
+<span class="p">{</span>
+   <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;Results delivered to db&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;payload&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;job_id&quot;</span><span class="o">:</span> <span class="s2">&quot;21e15641-ad3d-42ac-83e1-2df8a90d0e4c&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The return contains the job id (for more information, see <span class="xref std std-ref">logs</span>). To view the log of what our dedupe function did, we can go to the logs endpoint and retrieve those results. See <span class="xref std std-ref">_rest_json_logs</span>.</p>
+<p>Mutation steps can be chained (see <a class="reference internal" href="../core/workers.html#workers"><span class="std std-ref">Workers</span></a>). The results of one step is fed into another step.</p>
+</section>
+<section id="chaining-steps-deduplicaton-example">
+<h4>Chaining Steps Deduplicaton Example<a class="headerlink" href="#chaining-steps-deduplicaton-example" title="Permalink to this headline">¶</a></h4>
+<p>The following example chains two steps together. The final result will be committed to the database.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="p">{</span>
+    <span class="nx">source_host</span><span class="o">:</span> <span class="s2">&quot;my_cluster_host&quot;</span><span class="p">,</span>
+    <span class="nx">source_db</span><span class="o">:</span> <span class="s2">&quot;my_db&quot;</span><span class="p">,</span>
+    <span class="nx">source_username</span><span class="o">:</span> <span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+    <span class="nx">source_password</span><span class="o">:</span> <span class="s2">&quot;rossum&quot;</span><span class="p">,</span>
+    <span class="nx">source_schema</span><span class="o">:</span> <span class="s2">&quot;private_data&quot;</span><span class="p">,</span>
+    <span class="nx">source_query</span><span class="o">:</span> <span class="s2">&quot;SELECT o.id as organization_id, o.name as name, o.url as url, a.address_1 as address1, a.address_2 as address2, a.city, a.state_province as state, a.postal_code as zip \</span>
+<span class="s2">                    FROM organization o JOIN location l on l.organization_id = o.id \</span>
+<span class="s2">                    JOIN address a on a.location_id = l.id WHERE type = &#39;physical&#39;&quot;</span><span class="p">,</span>
+    <span class="nx">destination_host</span><span class="o">:</span> <span class="s2">&quot;my_cluster_host&quot;</span><span class="p">,</span>
+    <span class="nx">destination_db</span><span class="o">:</span> <span class="s2">&quot;my_dedupes_db&quot;</span><span class="p">,</span>
+    <span class="nx">destination_username</span><span class="o">:</span> <span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+    <span class="nx">destination_password</span><span class="o">:</span> <span class="s2">&quot;guidovan&quot;</span><span class="p">,</span>
+    <span class="nx">destination_schema</span><span class="o">:</span> <span class="s2">&quot;public_data&quot;</span><span class="p">,</span>
+    <span class="nx">destination_query</span><span class="o">:</span> <span class="s2">&quot;INSERT INTO urls_deduped (organization_id, name, url, address_1, address_2, city, state, zip) VALUES (%s, $s, %s, %s, %s, %s, %s, %s)&quot;</span><span class="p">,</span>
+    <span class="nx">dry_run</span><span class="o">:</span> <span class="s2">&quot;true&quot;</span>
+    <span class="nx">steps</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;deduplicate_exact_match_name_url&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;deduplicate_exact_match_address&quot;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1">// Response</span>
+<span class="p">{</span>
+   <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;Results delivered to db&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;payload&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;job_id&quot;</span><span class="o">:</span> <span class="s2">&quot;56b9e0ac-2b97-4b49-b4b5-7b227bc40df0&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="postgres-to-json">
+<h3>Postgres to JSON<a class="headerlink" href="#postgres-to-json" title="Permalink to this headline">¶</a></h3>
+<p>rest endpoint: “<a class="reference external" href="http://127.0.0.1:8000/deduplicate/database/json">http://127.0.0.1:8000/deduplicate/database/json</a>”</p>
+<p>We can connect to a database and return the results in JSON using the above endpoint. The payload will include the “job_id” and the “results”.</p>
+<section id="postgres-to-json-example">
+<h4>Postgres to JSON Example<a class="headerlink" href="#postgres-to-json-example" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="p">{</span>
+    <span class="nx">source_host</span><span class="o">:</span> <span class="s2">&quot;my_cluster_host&quot;</span><span class="p">,</span>
+    <span class="nx">source_db</span><span class="o">:</span> <span class="s2">&quot;my_db&quot;</span><span class="p">,</span>
+    <span class="nx">source_username</span><span class="o">:</span> <span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+    <span class="nx">source_password</span><span class="o">:</span> <span class="s2">&quot;rossum&quot;</span><span class="p">,</span>
+    <span class="nx">source_schema</span><span class="o">:</span> <span class="s2">&quot;private_data&quot;</span><span class="p">,</span>
+    <span class="nx">source_query</span><span class="o">:</span> <span class="s2">&quot;SELECT o.id as organization_id, o.name as name, o.url as url, a.address_1 as address1, a.address_2 as address2, a.city, a.state_province as state, a.postal_code as zip \</span>
+<span class="s2">                    FROM organization o JOIN location l on l.organization_id = o.id \</span>
+<span class="s2">                    JOIN address a on a.location_id = l.id WHERE type = &#39;physical&#39;&quot;</span><span class="p">,</span>
+
+    <span class="nx">steps</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;deduplicate_exact_match_name_url&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;deduplicate_exact_match_address&quot;</span>
+    <span class="p">]</span>
+
+<span class="p">}</span>
+
+
+<span class="c1">// Response</span>
+
+<span class="p">{</span>
+    <span class="s2">&quot;status&quot;</span><span class="o">:</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;payload&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;job_id&quot;</span><span class="o">:</span> <span class="s2">&quot;cc407046-4bfa-4f3b-8736-72ad61ca71ef&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;results&quot;</span><span class="o">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;46c4acdfa7407bb1f0de32a2467c7987&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;*REQUIRED* text&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;website&quot;</span><span class="o">:</span> <span class="s2">&quot;http://some.domain.com&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;address_1&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;address_2&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;city&quot;</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;state_province&quot;</span><span class="o">:</span> <span class="s2">&quot;Two character state (All caps)&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;postal_code&quot;</span><span class="o">:</span> <span class="s2">&quot;99999 or 99999-9999&quot;</span>
+            <span class="p">},</span>
+            <span class="p">...</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="postgres-to-excel-example">
+<h4>Postgres to Excel Example<a class="headerlink" href="#postgres-to-excel-example" title="Permalink to this headline">¶</a></h4>
+<p>rest endpoint “<a class="reference external" href="http://127.0.0.1:8000/deduplicate/database/excel">http://127.0.0.1:8000/deduplicate/database/excel</a>”</p>
+<p>We can connect to the database and return the results as an excel file. The name of the file is the “job_id”. To retrieve the Excel version fo the results, see <a class="reference internal" href="rest_server_logs.html#rest-json-logs"><span class="std std-ref">REST Server JSON Logs Example</span></a>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Request</span>
+<span class="p">{</span>
+    <span class="nx">source_host</span><span class="o">:</span> <span class="s2">&quot;my_cluster_host&quot;</span><span class="p">,</span>
+    <span class="nx">source_db</span><span class="o">:</span> <span class="s2">&quot;my_db&quot;</span><span class="p">,</span>
+    <span class="nx">source_username</span><span class="o">:</span> <span class="s2">&quot;admin&quot;</span><span class="p">,</span>
+    <span class="nx">source_password</span><span class="o">:</span> <span class="s2">&quot;rossum&quot;</span><span class="p">,</span>
+    <span class="nx">source_schema</span><span class="o">:</span> <span class="s2">&quot;private_data&quot;</span><span class="p">,</span>
+    <span class="nx">source_query</span><span class="o">:</span> <span class="s2">&quot;SELECT o.id as organization_id, o.name as name, o.url as url, a.address_1 as address1, a.address_2 as address2, a.city, a.state_province as state, a.postal_code as zip \</span>
+<span class="s2">                    FROM organization o JOIN location l on l.organization_id = o.id \</span>
+<span class="s2">                    JOIN address a on a.location_id = l.id WHERE type = &#39;physical&#39;&quot;</span><span class="p">,</span>
+
+    <span class="nx">steps</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s2">&quot;deduplicate_exact_match_name_url&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;deduplicate_exact_match_address&quot;</span>
+    <span class="p">]</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If using Postman to test this endpoint, be sure to select “Send and Download”.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../core/core_index.html">Core library</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/core_index.html#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rest_index.html">REST API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="rest_server.html">REST API Getting Started</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">REST API Deduplication Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#exact-match-name-url-example">Exact Match Name Url Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rest_server_logs.html">REST API Logs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rest_index.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rest_server.html"
+                        title="previous chapter">REST API Getting Started</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="rest_server_logs.html"
+                        title="next chapter">REST API Logs</a></p>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="rest_server_logs.html" title="REST API Logs"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="rest_server.html" title="REST API Getting Started"
+             >previous</a> |</li>
+          <li><img src="../_static/py.svg" alt="python logo" style="vertical-align: middle; margin-top: -1px"/></li>
+          <li><a href="https://www.python.org/">Python</a> &#187;</li>
+          <li class="switchers">
+            <div class="language_switcher_placeholder"></div>
+            <div class="version_switcher_placeholder"></div>
+          </li>
+          <li>
+              
+              <a href="../index.html">Silobuster Dedupe 1.0.0 documentation</a> &#187;
+              
+          </li>
+          <li class="nav-item nav-item-1"><a href="rest_index.html" >REST API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">REST API Deduplication Endpoints</a></li>
+                <li class="right">
+                    
+
+    <div class="inline-search" role="search">
+        <form class="inline-search" action="../search.html" method="get">
+          <input placeholder="Quick search" aria-label="Quick search" type="text" name="q" />
+          <input type="submit" value="Go" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </form>
+    </div>
+                     |
+                </li>
+            
+      </ul>
+    </div>  
+    <div class="footer">
+    &copy; Copyright 2023, Silobuster Dedupe.
+    <br />
+    This page is licensed under the Python Software Foundation License Version 2.
+    <br />
+    Examples, recipes, and other code in the documentation are additionally licensed under the Zero Clause BSD License.
+    <br />
+    
+    <br />
+
+    The Python Software Foundation is a non-profit corporation.
+<a href="https://www.python.org/psf/donations/">Please donate.</a>
+<br />
+    <br />
+
+    Last updated on None.
+    
+    <br />
+
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+    </div>
+
+  </body>
+</html>

@@ -140,9 +140,12 @@ app_logger: system-wide app logger. Each step produces a log result. If the conn
 The app_logger is a singleton class.
 '''
 
+
 DEDUPLICATION_STEPS = {
-    'dedupe_io_names_addresses': 'libs.dedupe.ml.names_addresses.names_addresses',
-    'deduplicate_exact_match_name_url': 'libs.dedupe.algo.exact_name_url',
+    'dedupe_io_names_addresses': 'libs.workers.ml.names_addresses.names_addresses',
+    'deduplicate_exact_match_address': 'libs.workers.algo.exact_address',
+    'deduplicate_exact_match_name_url': 'libs.workers.algo.exact_name_url',
 }
+
 
 app_logger = LogHandler(db_handler=PostgresHandler(env_prefix='POSTGRES'))

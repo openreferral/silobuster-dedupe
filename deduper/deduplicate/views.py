@@ -12,7 +12,7 @@ from libs.handler.postgres_handler import PostgresHandler
 from libs.connector.postgres_connector import PostgresToPostgresConnector
 from libs.dataframes.to_types import to_list_of_dicts
 
-from .process_requests import ProcessDbToDb
+from .process_requests import ProcessDbToDb, ProcessDbToJSON, ProcessDbToExcel
 
 
 
@@ -57,10 +57,29 @@ class DatabaseToDatabase(APIView):
     
     #  job: dict={ 'exact_name_url': 'deduplicate_exact_match_name_url' }
 
-    def post(self, request):
+    @staticmethod
+    def post(request):
         data = request.data
         return Response(ProcessDbToDb(data))
 
 
+class DatabaseToJSON(APIView):
+
+    @staticmethod
+    def post(request):
+        data = request.data
+        return Response(ProcessDbToJSON(data))
+
+
 class DatabaseToExcel(APIView):
-    pass
+    
+    @staticmethod
+    def post(request):
+        data = request.data
+        job_id, content = ProcessDbToExcel(data)
+        response = Response(
+            headers={'Content-Disposition': f'attachment; filename={job_id}.xlsx'},
+            content_type='application/excel'
+        )
+        response.content = content
+        return response

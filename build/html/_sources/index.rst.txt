@@ -8,16 +8,16 @@
 Welcome to Silobuster Dedupe's documentation!
 =============================================
 
+The core library documentation covers the library's code base that handles connections and manipulating data. The REST API documentation covers the Django containers that run the library and the various 
+endpoints and settings.
+
 .. toctree::
    :maxdepth: 3
    :caption: Contents:
 
-   rest_server
-   rest_server_deduplication
-   helpers
-   connectors
-   handlers
-   exceptions
+   
+   core/core_index
+   rest/rest_index
    
 
 Indices and tables

@@ -1,5 +1,5 @@
 ============================================
-REST API
+REST API Getting Started
 ============================================
 
 The REST API included is meant to be ran as a micro service. A defined set of deduplication and/or transformation steps will be a system default setting. Clients can then request information and post
@@ -30,6 +30,9 @@ Configuration
 The server will be exposed to port 8000 by default. This can be changed in the *dockerfiles/docker-compose.yml* file.
 
 The volumes mapped are *deduper* and *libs*.
+
+
+.. _rest_server_configuration:
 
 ############################################
 Server Configuration
