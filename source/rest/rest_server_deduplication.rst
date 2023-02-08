@@ -1,14 +1,16 @@
-============================================
+############################################
 REST API Deduplication Endpoints
-============================================
+############################################
+
 
 The deduplication endpoints serve as a means to manually deduplication datasets and write the results to some output. The format for the urls is "deduplication/input/output". The end results are 
 delivered through the output format. Logs on these steps can then be viewed at the "logs" endpoint.
 
 
-############################################
+============================================
 Exact Match Name Url Example
-############################################
+============================================
+
 
 
 The exact match algorithm matches organizations and websites. Websites are lower cased and the protocol and "www" is removed. The algorithm expects two columns:
@@ -31,17 +33,15 @@ The "deduplicate_exact_match_address" needs columns related to addresses, such a
 are then available to the "deduplicate_exact_match_address".
 
 
-Postgres to Postgres
-********************************************
+============================================
+Postgres to Postgres Example
+============================================
+
 
 rest endpoint: "http://127.0.0.1:8000/deduplicate/database/database"
 
 
-
-Default Deduplication Example
---------------------------------------------
-
-The REST API server is configured to run a series of deduplication steps (see :ref:`rest_server_configuration`).
+The REST API server is configured to run a series of deduplication steps (see :ref:`rest_server_configuration`) by default.
 
 
 .. code-block:: javascript
@@ -87,9 +87,9 @@ And perform a deduplication of the steps defined in the dict, DEDUPLICATION_STEP
 
 You can specify custom database settings.
 
-
+================================================
 Custom Database Settings Deduplication Example
------------------------------------------------
+================================================
 
 
 .. code-block:: javascript
@@ -128,8 +128,11 @@ The return contains the job id (for more information, see :ref:`logs`). To view 
 Mutation steps can be chained (see :ref:`workers`). The results of one step is fed into another step.
 
 
+
+================================================
 Chaining Steps Deduplicaton Example
-------------------------------------------------
+================================================
+
 
 The following example chains two steps together. The final result will be committed to the database. 
 
@@ -170,17 +173,16 @@ The following example chains two steps together. The final result will be commit
 
 
 
-Postgres to JSON
-********************************************
+================================================
+Postgres to JSON Example
+================================================
+
 
 rest endpoint: "http://127.0.0.1:8000/deduplicate/database/json"
 
 We can connect to a database and return the results in JSON using the above endpoint. The payload will include the "job_id" and the "results".
 
 
-
-Postgres to JSON Example
---------------------------------------------
 
 .. code-block:: javascript
 
@@ -227,8 +229,11 @@ Postgres to JSON Example
     }
 
 
+
+================================================
 Postgres to Excel Example
---------------------------------------------
+================================================
+
 
 rest endpoint "http://127.0.0.1:8000/deduplicate/database/excel"
 

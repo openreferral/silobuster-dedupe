@@ -56,6 +56,11 @@
 <li class="toctree-l2"><a class="reference internal" href="rest_server.html">REST API Getting Started</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">REST API Deduplication Endpoints</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#exact-match-name-url-example">Exact Match Name Url Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#postgres-to-postgres-example">Postgres to Postgres Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-database-settings-deduplication-example">Custom Database Settings Deduplication Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chaining-steps-deduplicaton-example">Chaining Steps Deduplicaton Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#postgres-to-json-example">Postgres to JSON Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#postgres-to-excel-example">Postgres to Excel Example</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rest_server_logs.html">REST API Logs</a></li>
@@ -155,12 +160,11 @@ we can pass an array for steps:</p>
 </div>
 <p>The “deduplicate_exact_match_address” needs columns related to addresses, such as address_1 and city. So, we pass those columns to the query. Once the “deduplicate_exact_match_name_url” has been executed, those additional columns
 are then available to the “deduplicate_exact_match_address”.</p>
-<section id="postgres-to-postgres">
-<h3>Postgres to Postgres<a class="headerlink" href="#postgres-to-postgres" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="postgres-to-postgres-example">
+<h2>Postgres to Postgres Example<a class="headerlink" href="#postgres-to-postgres-example" title="Permalink to this headline">¶</a></h2>
 <p>rest endpoint: “<a class="reference external" href="http://127.0.0.1:8000/deduplicate/database/database">http://127.0.0.1:8000/deduplicate/database/database</a>”</p>
-<section id="default-deduplication-example">
-<h4>Default Deduplication Example<a class="headerlink" href="#default-deduplication-example" title="Permalink to this headline">¶</a></h4>
-<p>The REST API server is configured to run a series of deduplication steps (see <a class="reference internal" href="rest_server.html#rest-server-configuration"><span class="std std-ref">Server Configuration</span></a>).</p>
+<p>The REST API server is configured to run a series of deduplication steps (see <a class="reference internal" href="rest_server.html#rest-server-configuration"><span class="std std-ref">Server Configuration</span></a>) by default.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Request</span>
 <span class="p">{</span>
     <span class="nx">source_query</span><span class="o">:</span> <span class="s2">&quot;SELECT o.id as organization_id, o.name as name, o.url as url, a.address_1 as address1, a.address_2 as address2, a.city, a.state_province as state, a.postal_code as zip \</span>
@@ -196,7 +200,7 @@ are then available to the “deduplicate_exact_match_address”.</p>
 <p>You can specify custom database settings.</p>
 </section>
 <section id="custom-database-settings-deduplication-example">
-<h4>Custom Database Settings Deduplication Example<a class="headerlink" href="#custom-database-settings-deduplication-example" title="Permalink to this headline">¶</a></h4>
+<h2>Custom Database Settings Deduplication Example<a class="headerlink" href="#custom-database-settings-deduplication-example" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Request</span>
 <span class="p">{</span>
     <span class="nx">source_host</span><span class="o">:</span> <span class="s2">&quot;my_cluster_host&quot;</span><span class="p">,</span>
@@ -230,7 +234,7 @@ are then available to the “deduplicate_exact_match_address”.</p>
 <p>Mutation steps can be chained (see <a class="reference internal" href="../core/workers.html#workers"><span class="std std-ref">Workers</span></a>). The results of one step is fed into another step.</p>
 </section>
 <section id="chaining-steps-deduplicaton-example">
-<h4>Chaining Steps Deduplicaton Example<a class="headerlink" href="#chaining-steps-deduplicaton-example" title="Permalink to this headline">¶</a></h4>
+<h2>Chaining Steps Deduplicaton Example<a class="headerlink" href="#chaining-steps-deduplicaton-example" title="Permalink to this headline">¶</a></h2>
 <p>The following example chains two steps together. The final result will be committed to the database.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Request</span>
 <span class="p">{</span>
@@ -266,13 +270,10 @@ are then available to the “deduplicate_exact_match_address”.</p>
 </pre></div>
 </div>
 </section>
-</section>
-<section id="postgres-to-json">
-<h3>Postgres to JSON<a class="headerlink" href="#postgres-to-json" title="Permalink to this headline">¶</a></h3>
+<section id="postgres-to-json-example">
+<h2>Postgres to JSON Example<a class="headerlink" href="#postgres-to-json-example" title="Permalink to this headline">¶</a></h2>
 <p>rest endpoint: “<a class="reference external" href="http://127.0.0.1:8000/deduplicate/database/json">http://127.0.0.1:8000/deduplicate/database/json</a>”</p>
 <p>We can connect to a database and return the results in JSON using the above endpoint. The payload will include the “job_id” and the “results”.</p>
-<section id="postgres-to-json-example">
-<h4>Postgres to JSON Example<a class="headerlink" href="#postgres-to-json-example" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Request</span>
 <span class="p">{</span>
     <span class="nx">source_host</span><span class="o">:</span> <span class="s2">&quot;my_cluster_host&quot;</span><span class="p">,</span>
@@ -317,7 +318,7 @@ are then available to the “deduplicate_exact_match_address”.</p>
 </div>
 </section>
 <section id="postgres-to-excel-example">
-<h4>Postgres to Excel Example<a class="headerlink" href="#postgres-to-excel-example" title="Permalink to this headline">¶</a></h4>
+<h2>Postgres to Excel Example<a class="headerlink" href="#postgres-to-excel-example" title="Permalink to this headline">¶</a></h2>
 <p>rest endpoint “<a class="reference external" href="http://127.0.0.1:8000/deduplicate/database/excel">http://127.0.0.1:8000/deduplicate/database/excel</a>”</p>
 <p>We can connect to the database and return the results as an excel file. The name of the file is the “job_id”. To retrieve the Excel version fo the results, see <a class="reference internal" href="rest_server_logs.html#rest-json-logs"><span class="std std-ref">REST Server JSON Logs Example</span></a>.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Request</span>
@@ -342,8 +343,6 @@ are then available to the “deduplicate_exact_match_address”.</p>
 <p>If using Postman to test this endpoint, be sure to select “Send and Download”.</p>
 </section>
 </section>
-</section>
-</section>
 
 
             <div class="clearer"></div>
@@ -361,6 +360,11 @@ are then available to the “deduplicate_exact_match_address”.</p>
 <li class="toctree-l2"><a class="reference internal" href="rest_server.html">REST API Getting Started</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">REST API Deduplication Endpoints</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#exact-match-name-url-example">Exact Match Name Url Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#postgres-to-postgres-example">Postgres to Postgres Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-database-settings-deduplication-example">Custom Database Settings Deduplication Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chaining-steps-deduplicaton-example">Chaining Steps Deduplicaton Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#postgres-to-json-example">Postgres to JSON Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#postgres-to-excel-example">Postgres to Excel Example</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rest_server_logs.html">REST API Logs</a></li>
