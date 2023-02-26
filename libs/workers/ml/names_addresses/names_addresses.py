@@ -42,9 +42,12 @@ def split_addresses(addr1: str, addr2: str=""):
 
 
 
-def dedupe_io_names_addresses(df: pd.DataFrame):
+def dedupe_io_names_addresses(df: pd.DataFrame, **kwargs):
     '''
-    Run dedupe.io and match addresses. Then create a new dataframe to model the data of the database.
+    Requires:
+    keyword arguments:
+    
+    Run dedupe.io and match addresses. Use that data to dedupe within itself and return an organization and an address dataframe that is formatted for a node.
     '''
     lower_threshold = .6
     upper_threshold = .999

@@ -146,7 +146,7 @@ class GenericConnecter(BaseConnector):
         return job_id
 
     
-    def transform(self, handler: BaseHandler, *funcs):
+    def transform(self, handler: BaseHandler, column_map: dict, func: object):
         '''
         Accepts a handler and a number of functions that mutate a dataframe using another dataframe and returns a dictionary. The return dictionary must have a 
         key of results and all keys in the dictionary must be arrays of records. Each function mutates the df attribute and the 
@@ -183,8 +183,6 @@ class GenericConnecter(BaseConnector):
 
     def reduce(self):
         '''
-        Accepts a dataframe, a left column (and existing column from the df attribute), a right column (existing 
-        column from the df argument), and a join type. Joins the df attribute with the new table.
         '''        
         pass
 

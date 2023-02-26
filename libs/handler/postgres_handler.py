@@ -63,7 +63,7 @@ class PostgresHandler(BaseDBHandler):
             password=self.password,
             host=self.host,
             port=self.port,
-             options=f'-c search_path={schema}',
+            options=f'-c search_path={schema}',
         )
 
 
@@ -97,6 +97,13 @@ class PostgresHandler(BaseDBHandler):
     @property
     def schema(self) -> str:
         return self.__schema
+
+
+    @schema.setter
+    def schema(self, new_schema: str):
+        qry = f"SET search_path TO {new_schema}"
+        self.execute(qry)
+        self.__schema = new_schema
 
 
     @property
